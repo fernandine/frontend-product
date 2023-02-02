@@ -1,0 +1,22 @@
+<ngx-spinner type="ball-spin"></ngx-spinner>
+<mat-toolbar color="primary">
+    <button routerLink="/products">
+    <mat-icon>menu</mat-icon>
+    <span>My Ecommerce</span>
+    </button>
+
+  <app-search></app-search>
+  <app-login-status></app-login-status>
+  <app-cart-status></app-cart-status>
+
+</mat-toolbar>
+
+<router-outlet></router-outlet>
+
+<footer>
+  <ul>
+    <li><a routerLink="/home">About Us</a></li>
+    <li><a routerLink="/home">Contact Us</a></li>
+    <li><a routerLink="/home">Help</a></li>
+  </ul>
+</footer>

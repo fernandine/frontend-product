@@ -1,0 +1,17 @@
+mat-card {
+  max-width: 80%;
+  margin: 2em auto;
+  text-align: center;
+}
+.listCategory {
+  display: flex;
+  justify-content: space-around;
+}
+.productbox {
+  margin: 2em auto;
+  background-color: rgb(229, 235, 241);
+  border: 1px solid rgb(78, 78, 78);
+}
+.price {
+  color: black;
+}
