@@ -22,10 +22,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginFormGroup = this.formBuilder.group({
-      email: new FormControl('', [Validators.required,
-      Validators.email, Validators.minLength(4)]),
-      password: new FormControl('', [Validators.minLength(4),
-      Validators.maxLength(16), Validators.required])
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
     })
     this.loginFormGroup.valueChanges.subscribe(() => {
       if (this.loginFormGroup.invalid) {
@@ -54,5 +52,25 @@ export class LoginComponent implements OnInit {
 
   get email() { return this.loginFormGroup.get('email') }
   get password() { return this.loginFormGroup.get('password') }
+
+  getErrorMessage(fieldName: string) {
+    const field = this.loginFormGroup.get(fieldName);
+
+    if (field?.hasError('required')) {
+      return 'Campo obrigatório';
+    }
+
+    if (field?.hasError('minlength')) {
+      const requiredLength: number = field.errors ? field.errors['minlength']['requiredLength'] : 5;
+      return `Tamanho mínimo precisa ser de ${requiredLength} caracteres.`;
+    }
+
+    if (field?.hasError('maxlength')) {
+      const requiredLength: number = field.errors ? field.errors['maxlength']['requiredLength'] : 200;
+      return `Tamanho máximo excedido de ${requiredLength} caracteres.`;
+    }
+
+    return 'Campo Inválido';
+  }
 
 }

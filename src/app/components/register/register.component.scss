@@ -5,20 +5,19 @@ mat-card {
   border: 2px solid rgb(84, 169, 238);
   border-radius: 20px;
 }
-.example-form {
-  width: 400px;
-  margin: 16px auto;
-  display: block;
-  text-align: center;
-}
 
 mat-form-field {
   width: 100%;
   margin-bottom: 20px;
 }
-.checkbox-login {
-  display: flex;
-  align-content: center;
-  align-items: center;
-  height: 60px;
+
+button {
+  width: 150px;
+  margin-top: 20px;
+}
+.example-form {
+  width: 400px;
+  margin: 16px auto;
+  display: block;
+  text-align: center;
 }

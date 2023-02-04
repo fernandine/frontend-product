@@ -1,15 +1,3 @@
-.security-btn {
-  position: relative;
-  right: 0;
-  min-width: 95px;
-  color: #fff;
-  border: 10px solid #205b8d;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 43px;
-  background: #205b8d;
-}
-
 .login-status-header {
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -17,6 +5,7 @@
   -ms-flex-pack: center;
   justify-content: center;
 }
+
 
 .login-status-user-info {
   line-height: 43px;
@@ -29,4 +18,10 @@
   -o-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   transition: all 0.5s ease;
+}
+
+.header-link {
+  margin-right: 16px;
+  text-decoration: none;
+  color: #333;
 }

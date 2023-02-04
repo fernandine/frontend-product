@@ -7,15 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent {
+@Input() myInput: any;
 
-
-  constructor(
-    private router: Router
-  ) {
-  }
+  constructor( private router: Router ) {}
 
   doSearch(value: string): void {
     this.router.navigateByUrl(`/search/${value}`);
   }
-
 }

@@ -30,6 +30,12 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { HeaderComponent } from './components/header/header.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { RegisterComponent } from './components/register/register.component';
 
 
 
@@ -49,7 +55,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     LoginStatusComponent,
     MembersPageComponent,
     OrderHistoryComponent,
-    AdminAreaComponent
+    AdminAreaComponent,
+    HeaderComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +73,12 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule
+
   ],
   providers: [
     ProductService,

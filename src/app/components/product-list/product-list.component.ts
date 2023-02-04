@@ -1,12 +1,10 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CartItem } from 'src/app/common/cart-item';
 import { Product } from 'src/app/common/product';
 import { ProductCategory } from 'src/app/common/product-category';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
-import { PaginationType } from '../../common/pagination-type';
 
 @Component({
   selector: 'app-product-list',
@@ -30,22 +28,6 @@ export class ProductListComponent implements OnInit {
 
   previousKeyword: string = '';
 
-  pagination: PaginationType = {
-    length: 0,
-    size: 0,
-    lastPage: 0,
-    page: 0,
-    startIndex: 0,
-    endIndex: 0,
-  };
-
-  page = 0;
-  size = 25;
-  search = '';
-  order = 'asc';
-  sort = 'id';
-
-  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
   constructor(
     private cartService: CartService,
@@ -53,13 +35,6 @@ export class ProductListComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.paginator._intl.itemsPerPageLabel = 'Itens por página:';
-    this.paginator._intl.nextPageLabel = 'Próxima';
-    this.paginator._intl.previousPageLabel = 'Anterior';
-    this.paginator._intl.firstPageLabel = 'Primeira página';
-    this.paginator._intl.lastPageLabel = 'Última página';
-
-
     this.route.paramMap.subscribe(() => {
       this.listProducts();
       this.listProductCategories();
