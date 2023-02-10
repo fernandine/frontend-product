@@ -1,6 +1,7 @@
 import { Component, Injector, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthInterceptorService } from 'src/app/services/auth-interceptor.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,68 +10,41 @@ import { AuthInterceptorService } from 'src/app/services/auth-interceptor.servic
 })
 export class LoginComponent implements OnInit {
 
-  isSignIn: any;
-  loginFormGroup!: FormGroup;
-  isDisabled: boolean = true;
+  form: any = {
+    email: null,
+    password: null
+  };
+  userFullName: string = '';
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private injector: Injector
-  ) {
-
-  }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.loginFormGroup = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
-    })
-    this.loginFormGroup.valueChanges.subscribe(() => {
-      if (this.loginFormGroup.invalid) {
-        this.isDisabled = true;
-      } else {
-        this.isDisabled = false;
+      this.isLoggedIn = true;
+  }
+
+  onSubmit(): void {
+    const { username, password } = this.form;
+
+    this.authService.login(username, password).subscribe({
+      next: data => {
+
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.reloadPage();
+      },
+      error: err => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
       }
     });
   }
 
-  handleSubmit() {
-    if (this.loginFormGroup.invalid) {
-      this.loginFormGroup.markAllAsTouched();
-      return;
-    }
-    const formForApi = {
-      usernameOrEmail: this.loginFormGroup.value['email'],
-      password: this.loginFormGroup.value['password']
-    }
-    const authService = this.injector.get(AuthInterceptorService);
-    authService.login(formForApi).subscribe(
-      data => console.log(data)
-    )
-
-  }
-
-  get email() { return this.loginFormGroup.get('email') }
-  get password() { return this.loginFormGroup.get('password') }
-
-  getErrorMessage(fieldName: string) {
-    const field = this.loginFormGroup.get(fieldName);
-
-    if (field?.hasError('required')) {
-      return 'Campo obrigatório';
-    }
-
-    if (field?.hasError('minlength')) {
-      const requiredLength: number = field.errors ? field.errors['minlength']['requiredLength'] : 5;
-      return `Tamanho mínimo precisa ser de ${requiredLength} caracteres.`;
-    }
-
-    if (field?.hasError('maxlength')) {
-      const requiredLength: number = field.errors ? field.errors['maxlength']['requiredLength'] : 200;
-      return `Tamanho máximo excedido de ${requiredLength} caracteres.`;
-    }
-
-    return 'Campo Inválido';
+  reloadPage(): void {
+    window.location.reload();
   }
 
 }

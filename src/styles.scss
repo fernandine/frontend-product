@@ -1065,7 +1065,9 @@ footer ul li {
   }
 }
 
+
 @import '@angular/material/theming';
+
 @include mat-core();
 
 $custom-app-primary: mat-palette($mat-blue);

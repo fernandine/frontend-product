@@ -9,6 +9,9 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ProductService {
+  subscribe(arg0: { next: (resp: any) => void; }) {
+    throw new Error('Method not implemented.');
+  }
 
   private baseUrl = environment.shopApiUrl + '/products';
   private categoryUrl = environment.shopApiUrl + '/categories';

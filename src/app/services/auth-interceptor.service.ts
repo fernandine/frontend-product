@@ -49,7 +49,7 @@ export class AuthInterceptorService implements HttpInterceptor {
       data => {
         this.accessToken = data.accessToken;
         this.storage.setItem("token", data.accessToken)
-        this.storage.setItem("email", formValue.usernameOrEmail)
+        this.storage.setItem("email", formValue.email)
         return this.responseLoginDataFromApi = data;
       })
     )

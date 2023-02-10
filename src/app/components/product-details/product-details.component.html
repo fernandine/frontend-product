@@ -1,14 +1,35 @@
-<mat-card class="product-details-card">
-  <mat-card-header>
-    <mat-card-title>{{ product.name }}</mat-card-title>
-    <mat-card-subtitle class="price">{{ product.unitPrice }}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <img [src]="product.imageUrl"/>
-    <h2>Description</h2>
-    <p>{{ product.description }}</p>
-  </mat-card-content>
-  <mat-card-actions class="actions">
-    <button mat-raised-button (click)="addToCart(product)" color="primary">Add to cart</button>
-  </mat-card-actions>
-</mat-card>
+<div class="product-page" *ngIf="product">
+  <div class="grid">
+      <div class="col-6" *ngIf="product.imageUrl">
+        <img mat-card-image [src]="product.imageUrl" />
+      </div>
+      <div class="col-6 product">
+          <h1 class="product-name">{{ product.name }}</h1>
+          <p class="product-desc">
+              {{ product.description }}
+          </p>
+          <div class="product-rating">
+              <p-rating [(ngModel)]="product.rating" [cancel]="false" [disabled]="true"></p-rating>
+          </div>
+          <div class="product-price">
+              {{ product.unitPrice | currency }}
+              <span class="price-before">{{ (product.unitPrice ? product.unitPrice + 20 : product.unitPrice) | currency }}</span>
+          </div>
+          <div class="product-quantity">
+              <div class="field col-12 md:col-3 p-0">
+                  <label for="quantity">Quantity</label>
+                  <p-inputNumber mode="decimal"  [showButtons]="true" inputId="minmax-buttons" [min]="1" [max]="100"> </p-inputNumber>
+              </div>
+          </div>
+
+          <div class="product-action">
+              <button pButton pRipple type="button" label="Buy Now" class="p-button-rounded mr-2"></button>
+              <button pButton pRipple type="button" label="Add to Cart" class="p-button-rounded" ></button>
+          </div>
+      </div>
+  </div>
+
+  <div class="grid product-rich-desc">
+
+  </div>
+</div>

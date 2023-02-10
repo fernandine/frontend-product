@@ -9,40 +9,43 @@
     </button>
   </mat-toolbar>
 
-  <mat-grid-list cols="4" rowHeight="350px">
-      <mat-grid-tile *ngFor="let product of products">
-        <mat-card mat-elevation-z8 class="product-card">
-        <mat-card-header>
-          <a routerLink="/products/{{ product.id }}">
-            <img mat-card-image [src]="product.imageUrl" />
-          </a>
-        </mat-card-header>
-            <h3>{{ product.name }}</h3>
-            <mat-card-title class="price">
-              {{ product.unitPrice | currency : "USD" }}
-            </mat-card-title>
+<div class="featured-products" >
 
-            <mat-card-actions class="actions">
-          <button mat-raised-button color="primary"
-          (click)="addToCart(product)">Add to cart</button>
-            </mat-card-actions>
-          </mat-card>
-          </mat-grid-tile>
-        </mat-grid-list>
-</mat-card>
-        <!-- empty product handler -->
+  <ng-template pTemplate="header" >
+    <div class="flex flex-column md:flex-row md:justify-content-between gap-2">
+      <p-dropdown [options]="sortOptions" placeholder="Sort By Price" ></p-dropdown>
+    </div>
+  </ng-template>
 
-        <div
-          *ngIf="products?.length == 0">
-          <h3>No Product Found</h3>
+    <div class="grid">
+
+        <div class="col-3" *ngFor="let product of products" >
+          <div class="product-item">
+            <div class="product-item-wrapper">
+                <img [routerLink]="['/products', product.id]" [src]="product.imageUrl" alt="product_image" class="image" />
+                <h4 [routerLink]="['/products', product.id]" class="name">{{ product.name }}</h4>
+                <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false" styleClass="mb-2"></p-rating>
+
+                <h5 class="price">{{ product.unitPrice | currency }}</h5>
+                <p-button
+                  styleClass="mt-3 add-to-cart"
+                  label="Add to cart"
+                  icon="pi pi-shopping-cart"
+                  (click)="addToCart(product)"
+                  >
+                </p-button>
+            </div>
         </div>
+          </div>
 
-      <!--PAGINATOR-->
-      <mat-paginator #paginator class="paginator-text"
-      [length]="theTotalElements"
-      [pageSize]="thePageSize"
-      [showFirstLastButtons]="true"
-      [pageIndex]="thePageNumber"
-      [hidePageSize]="true" (page)="listProducts()">
-    </mat-paginator>
-      <!--PAGINATOR-->
+    </div>
+</div>
+
+<p-paginator
+[rows]="pageSize"
+[totalRecords]="products.length"
+(onPageChange)="onPageChange($event)"
+[pageLinkSize]="5"
+></p-paginator>
+
+</mat-card>

@@ -1,35 +1,28 @@
-<mat-card>
-<form class="example-form" [formGroup]="registrationForm">
-  <h1>Register</h1>
-  <mat-form-field>
-    <input matInput placeholder="First Name" formControlName="firstName">
-    <mat-error *ngIf="registrationForm.get('firstName')?.invalid">{{
-      getErrorMessage("firstName")
-    }}</mat-error>
-  </mat-form-field>
+<div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+  <div class="flex flex-column align-items-center justify-content-center">
+      <div style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
+          <div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius:53px">
+              <div class="text-center mb-5">
+                  <div class="text-900 text-3xl font-medium mb-3">Register</div>
+              </div>
+              <div [formGroup]="registrationForm">
+                  <label for="email" class="block text-900 text-xl font-medium mb-2" >Fist name</label>
+                  <input id="email" type="text" placeholder="john@email.com" pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
 
-  <mat-form-field>
-    <input matInput placeholder="Last Name" formControlName="lastName">
-    <mat-error *ngIf="registrationForm.get('lastName')?.invalid">{{
-      getErrorMessage("lastName")
-    }}</mat-error>
-  </mat-form-field>
+                  <label for="password" class="block text-900 font-medium text-xl mb-2">Last name</label>
+                  <input inputId="password" placeholder="lastName"  pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
 
-  <mat-form-field>
-    <input matInput placeholder="Email" formControlName="email">
-    <mat-error *ngIf="registrationForm.get('email')?.invalid">{{
-      getErrorMessage("email")
-    }}</mat-error>
-  </mat-form-field>
+                  <label for="password" class="block text-900 font-medium text-xl mb-2">Email</label>
+                  <input inputId="password" placeholder="email"  pInputText class="w-full md:w-30rem mb-5" style="padding:1rem">
 
-  <mat-form-field>
-    <input matInput type="password" placeholder="Password" formControlName="password">
-    <mat-error *ngIf="registrationForm.get('password')?.invalid">{{
-      getErrorMessage("password")
-    }}</mat-error>
-  </mat-form-field>
+                  <label for="password" class="block text-900 font-medium text-xl mb-2">Password</label>
+                  <p-password inputId="password" placeholder="Password"  styleClass="mb-5" inputStyleClass="w-full p-3 md:w-30rem"></p-password>
 
-  <button mat-raised-button color="primary" (click)="register()">Register</button>
+                  </div>
+                </div>
+                  <button pButton pRipple label="Register" class="w-full p-3 text-xl" [routerLink]="['/oauth/token']"></button>
+              </div>
+          </div>
+      </div>
 
-</form>
-</mat-card>
+

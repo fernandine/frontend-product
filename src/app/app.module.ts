@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { AppComponent } from './app.component';
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
@@ -17,7 +16,6 @@ import { SearchComponent } from './components/search/search.component';
 import { CartService } from './services/cart.service';
 import { ProductService } from './services/product.service';
 
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { MembersPageComponent } from './components/members-page/members-page.component';
@@ -36,11 +34,9 @@ import { MatInputModule } from '@angular/material/input';
 import { HeaderComponent } from './components/header/header.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { RegisterComponent } from './components/register/register.component';
-
-
-
-
-
+import {MatTableModule} from '@angular/material/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PrimeNgModule } from './primeng.module'
 
 @NgModule({
   declarations: [
@@ -61,7 +57,6 @@ import { RegisterComponent } from './components/register/register.component';
   ],
   imports: [
     BrowserModule,
-    NgbModule,
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
@@ -77,8 +72,13 @@ import { RegisterComponent } from './components/register/register.component';
     MatGridListModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTableModule,
 
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    PrimeNgModule
   ],
   providers: [
     ProductService,

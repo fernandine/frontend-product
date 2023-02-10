@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { CartItem } from 'src/app/common/cart-item';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -13,9 +14,9 @@ export class CartDetailsComponent implements OnInit {
   totalPrice: number = 0;
   totalQuantity: number = 0;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.listCartDetails();
   }
 
@@ -35,16 +36,12 @@ export class CartDetailsComponent implements OnInit {
     this.cartService.computeCartTotals();
   }
 
-  incrementQuantity(cartItem: CartItem) {
-    this.cartService.addToCart(cartItem);
-  }
-
-  decrementQuantity(cartItem: CartItem) {
-    this.cartService.decrementQuantity(cartItem);
-  }
-
-  remove(cartItem: CartItem) {
+  onDelete(cartItem: CartItem) {
     this.cartService.remove(cartItem);
+  }
+
+  getTotal() {
+    return this.cartItems.map(t => t.unitPrice * t.quantity).reduce((acc, value) => acc + value, 0);
   }
 
 }

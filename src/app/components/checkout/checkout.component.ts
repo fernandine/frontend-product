@@ -134,7 +134,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   setupStripePaymentForm() {
-    var elements = this.stripe.elements();
+    let elements = this.stripe.elements();
 
     this.cardElement = elements.create('card', { hidePostalCode: true });
     this.cardElement.mount('#card-element');

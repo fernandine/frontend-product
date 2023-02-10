@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SelectItem } from 'primeng/api/selectitem';
 import { CartItem } from 'src/app/common/cart-item';
 import { Product } from 'src/app/common/product';
 import { ProductCategory } from 'src/app/common/product-category';
@@ -15,6 +16,7 @@ export class ProductListComponent implements OnInit {
 
 
   products: Product[] = [];
+  sortOptions: SelectItem[] = [];
   productCategories: ProductCategory[] = [];
   nameCategory!: ProductCategory;
   currentCategoryId: number = 1;
@@ -28,6 +30,8 @@ export class ProductListComponent implements OnInit {
 
   previousKeyword: string = '';
 
+  pageSize: number = 3;
+  currentPage: number = 0;
 
   constructor(
     private cartService: CartService,
@@ -124,6 +128,10 @@ export class ProductListComponent implements OnInit {
     const theCartItem = new CartItem(theProduct);
     this.cartService.addToCart(theCartItem);
 
+  }
+
+  onPageChange(event: { page: number; }) {
+    this.currentPage = event.page;
   }
 
 }
