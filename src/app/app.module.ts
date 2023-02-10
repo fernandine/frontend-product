@@ -16,6 +16,7 @@ import { SearchComponent } from './components/search/search.component';
 import { CartService } from './services/cart.service';
 import { ProductService } from './services/product.service';
 
+import { AboutComponent } from './components/about/about.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { MembersPageComponent } from './components/members-page/members-page.component';
@@ -37,56 +38,62 @@ import { RegisterComponent } from './components/register/register.component';
 import {MatTableModule} from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PrimeNgModule } from './primeng.module'
+import { FooterComponent } from "./components/footer/footer.component";
+import { ContactComponent } from './components/contact/contact.component';
+
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ProductListComponent,
-    SearchComponent,
-    ProductDetailsComponent,
-    CartStatusComponent,
-    CartDetailsComponent,
-    CheckoutComponent,
-    LoginComponent,
-    LoginStatusComponent,
-    MembersPageComponent,
-    OrderHistoryComponent,
-    AdminAreaComponent,
-    HeaderComponent,
-    RegisterComponent
-  ],
-  imports: [
-    BrowserModule,
-    ReactiveFormsModule,
-    FormsModule,
-    RouterModule,
-    HttpClientModule,
-    AppRoutingModule,
-    NgxSpinnerModule.forRoot({ type: 'ball-spin' }),
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatPaginatorModule,
-    MatGridListModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatTableModule,
+    declarations: [
+        AppComponent,
+        ProductListComponent,
+        SearchComponent,
+        ProductDetailsComponent,
+        CartStatusComponent,
+        CartDetailsComponent,
+        CheckoutComponent,
+        LoginComponent,
+        LoginStatusComponent,
+        MembersPageComponent,
+        OrderHistoryComponent,
+        AdminAreaComponent,
+        HeaderComponent,
+        RegisterComponent,
+        AboutComponent,
+        FooterComponent,
+        ContactComponent
+    ],
+    providers: [
+        ProductService,
+        CartService,
+        provideHttpClient(),
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
+    ],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        ReactiveFormsModule,
+        FormsModule,
+        RouterModule,
+        HttpClientModule,
+        AppRoutingModule,
+        NgxSpinnerModule.forRoot({ type: 'ball-spin' }),
+        BrowserAnimationsModule,
+        MatCardModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatPaginatorModule,
+        MatGridListModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCheckboxModule,
+        MatTableModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ReactiveFormsModule,
+        PrimeNgModule,
 
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    PrimeNgModule
-  ],
-  providers: [
-    ProductService,
-    CartService,
-    provideHttpClient(),
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
-  ],
-  bootstrap: [AppComponent]
+    ]
 })
 export class AppModule { }

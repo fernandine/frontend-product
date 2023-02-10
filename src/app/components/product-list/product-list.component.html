@@ -1,3 +1,4 @@
+<div class="ui-dark-theme">
 <mat-card>
   <mat-toolbar class="listCategory" color="primary">
     <button *ngFor="let category of productCategories">
@@ -7,6 +8,8 @@
         >{{ category.categoryName }}</mat-button
       >
     </button>
+    <button (click)="toggleTheme()">Toggle Dark Mode</button>
+
   </mat-toolbar>
 
 <div class="featured-products" >
@@ -49,3 +52,4 @@
 ></p-paginator>
 
 </mat-card>
+</div>

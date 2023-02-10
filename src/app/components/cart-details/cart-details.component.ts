@@ -40,8 +40,11 @@ export class CartDetailsComponent implements OnInit {
     this.cartService.remove(cartItem);
   }
 
-  getTotal() {
+  get subtotal() {
     return this.cartItems.map(t => t.unitPrice * t.quantity).reduce((acc, value) => acc + value, 0);
   }
 
+  get total() {
+    return this.subtotal * 1.1;
+  }
 }

@@ -1,19 +1,25 @@
-.header {
-margin-bottom: 60px;
+.toolbar {
+  background-color: #32a852;
+  color: rgb(51, 51, 51);
 }
 
-.spacer {
-  flex: 1 1 auto;
+
+.ui-toolbar-group-left {
+  display: flex;
+  align-items: center;
 }
 
-.header-logo {
-  font-size: 24px;
+.logo {
+  height: 50px;
+  margin: 0 20px 0 10px;
+}
+
+.brand-name {
+  font-size: 20px;
   font-weight: bold;
-  margin-right: 16px;
-  text-decoration: none;
-  color: #333;
 }
 
-.header-link {
-margin-right: 10px;
+.ui-toolbar-group-center {
+  display: flex;
+  align-items: center;
 }

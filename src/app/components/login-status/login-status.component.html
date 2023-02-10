@@ -3,10 +3,7 @@
     Welcome back {{ userFullName }}
   </div>
 
-  <button *ngIf="!isAuthenticated" routerLink="/login" class="header-link">
-    Sign In
-  </button>
-
+  <button pButton pRipple type="button" *ngIf="!isAuthenticated" routerLink="/login" label="Sign In" class="p-button-outlined"></button>
 
   <button *ngIf="isAuthenticated" (click)="logout()" class="security-btn">
     Logout

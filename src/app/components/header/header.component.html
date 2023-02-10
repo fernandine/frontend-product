@@ -1,3 +1,4 @@
+<!--
 <mat-toolbar class="header" color="primary">
   <mat-toolbar-row>
 
@@ -17,7 +18,35 @@
     <span class="spacer"></span>
 
   <app-cart-status style="margin-right: 40px;"></app-cart-status>
-
+  <button (click)="toggleTheme()">Toggle Dark Mode</button>
   </mat-toolbar-row>
 </mat-toolbar>
+-->
+
+
+<p-toolbar class="toolbar">
+
+  <div class="ui-toolbar-group-left">
+    <button pButton type="button" icon="pi pi-bars" (click)="toggleMenu()" class="ui-button-secondary"></button>
+    <img src="assets/logo.png" alt="Company Logo" class="logo">
+    <a class="brand-name">Company Name</a>
+  </div>
+  <div class="ui-toolbar-group-center">
+    <p-menu #menu [model]="items" [popup]="true" [style]="{'width':'50%'}" [baseZIndex]="10000"
+      [autoZIndex]="false" [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'">
+      <ng-template let-item pTemplate="item">
+        <span [ngClass]="'ui-menuitem-icon' + (item.icon ? ' pi ' + item.icon : '')" [ngStyle]="item.style"></span>
+        <span class="ui-menuitem-text">{{item.label}}</span>
+      </ng-template>
+    </p-menu>
+    <app-search></app-search>
+  </div>
+  <div class="ui-toolbar-group-right flex align-items-baseline flex-wrap gap-1 md:gap-4 xl:gap-8">
+
+      <app-login-status></app-login-status>
+      <p-button label="Register" routerLink="/register"></p-button>
+    </div>
+    <app-cart-status style="margin-right: 40px;"></app-cart-status>
+
+</p-toolbar>
 

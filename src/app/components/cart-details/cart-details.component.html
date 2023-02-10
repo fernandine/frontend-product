@@ -1,6 +1,6 @@
-<div class="p-d-flex p-flex-column">
+<p-card class="shopping-cart">
 
-      <p-table [value]="cartItems" responsiveLayout="scroll">
+      <p-table [value]="cartItems" [responsive]="true">
 
           <ng-template pTemplate="header">
               <tr>
@@ -32,31 +32,27 @@
               </tr>
           </ng-template>
 
-            <ng-template class="w-3" pTemplate="footer">
-                <tr>
-                    <td style="width: 25%; min-width: 7rem;">Subtotal:</td>
-                    <td style="width: 25%; min-width: 7rem;">{{ totalPrice | currency : "USD" }}</td>
-                    </tr>
-                    <tr>
-                    <td style="width: 25%; min-width: 7rem;">Shipping:</td>
-                    <td style="width: 25%; min-width: 7rem;">Free</td>
-                    </tr>
-                    <tr>
-                    <td style="width: 25%; min-width: 7rem;">Total Price:</td>
-                    <td style="width: 25%; min-width: 7rem;">{{ getTotal() | currency : "USD" }}</td>
-                </tr>
+          <ng-template pTemplate="summary">
+            <tr class="flex justify-content-end flex-wrap">
+              <td style="width: 20%; min-width: 7rem;">Subtotal:</td>
+              <td style="width: 20%; min-width: 7rem;">{{ subtotal | currency: "USD"}}</td>
+            </tr>
+            <tr class="flex justify-content-end flex-wrap">
+              <td style="width: 20%; min-width: 7rem;">Shipping:</td>
+              <td style="width: 20%; min-width: 7rem;">Free</td>
+            </tr>
+            <tr class="flex justify-content-end flex-wrap">
+                <td style="width: 20%; min-width: 7rem;">Total:</td>
+                <td style="width: 20%; min-width: 7rem;">{{ total | currency: "USD"}}</td>
+              </tr>
+
+<tr class="flex justify-content-end flex-wrap">
+  <td button pButton pRipple label="Checkout"  class="w-2 p-2 text-xl" [routerLink]="['/checkout']"></td>
+</tr>
+
             </ng-template>
 
-            <ng-template pTemplate="summary">
-              <button pButton pRipple label="Checkout"  position="bottom-left" class="w-3 p-2 text-xl" [routerLink]="['/checkout']"></button>
-            </ng-template>
-
-      </p-table>
-
-
-
-
-
+          </p-table>
 
 
   <!-- if card empty -->
@@ -68,4 +64,3 @@
   Your Shopping Cart is empty.
 </div>
 
-</div>

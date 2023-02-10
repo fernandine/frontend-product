@@ -13,7 +13,7 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-
+  darkMode = true;
 
   products: Product[] = [];
   sortOptions: SelectItem[] = [];
@@ -37,6 +37,10 @@ export class ProductListComponent implements OnInit {
     private cartService: CartService,
     private productService: ProductService,
     private route: ActivatedRoute) { }
+
+    toggleTheme() {
+      this.darkMode = !this.darkMode;
+    }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
