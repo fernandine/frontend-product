@@ -1,35 +1,231 @@
-<div class="product-page" *ngIf="product">
-  <div class="grid">
-      <div class="col-6" *ngIf="product.imageUrl">
-        <img mat-card-image [src]="product.imageUrl" />
-      </div>
-      <div class="col-6 product">
-          <h1 class="product-name">{{ product.name }}</h1>
-          <p class="product-desc">
-              {{ product.description }}
-          </p>
-          <div class="product-rating">
-              <p-rating [(ngModel)]="product.rating" [cancel]="false" [disabled]="true"></p-rating>
-          </div>
-          <div class="product-price">
-              {{ product.unitPrice | currency }}
-              <span class="price-before">{{ (product.unitPrice ? product.unitPrice + 20 : product.unitPrice) | currency }}</span>
-          </div>
-          <div class="product-quantity">
-              <div class="field col-12 md:col-3 p-0">
-                  <label for="quantity">Quantity</label>
-                  <p-inputNumber mode="decimal"  [showButtons]="true" inputId="minmax-buttons" [min]="1" [max]="100"> </p-inputNumber>
+<div class="surface-overlay px-4 md:px-6 lg:px-8 flex align-items-stretch relative" style="min-height: 80px">
+  <div class="grid my-4" *ngIf="product">
+      <div class="col-12 lg:col-6">
+          <div class="flex">
+              <div class="pl-3 w-10" *ngIf="product.imageUrl">
+                  <img [src]="product.imageUrl" class="w-full" />
               </div>
           </div>
+      </div>
 
-          <div class="product-action">
-              <button pButton pRipple type="button" label="Buy Now" class="p-button-rounded mr-2"></button>
-              <button pButton pRipple type="button" label="Add to Cart" class="p-button-rounded" ></button>
+
+      <div class="col-12 lg:col-6 py-3 lg:pl-6">
+        <div class="flex align-items-center text-xl font-medium text-900 mb-4">{{ product.name }}</div>
+
+
+        <div class="flex align-items-center justify-content-between mb-5">
+          <span class="text-900 font-medium text-3xl block">{{ product.unitPrice | currency }}</span>
+
+            <div class="flex align-items-center">
+              <span class="mr-3">
+                <p-rating [(ngModel)]="product.rating" [cancel]="false" [disabled]="true"></p-rating>
+              </span>
+              <span class="text-sm"><b class="text-900 mr-1">24</b> <span class="text-500"></span>reviews</span>
+            </div>
+        </div>
+
+        <div class="font-bold text-900 mb-3">Quantity</div>
+        <div class="flex flex-column sm:flex-row sm:align-items-center sm:justify-content-between">
+            <p-inputNumber [showButtons]="true" buttonLayout="horizontal" spinnerMode="horizontal" [min]="0" inputStyleClass="w-3rem text-center" [(ngModel)]="quantity"
+                decrementButtonClass="p-button-text" incrementButtonClass="p-button-text" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
+            <div class="flex align-items-center flex-1 mt-3 sm:mt-0 ml-0 sm:ml-5">
+                <button pButton pRipple label="Add to Cart" class="flex-1 mr-5"></button>
+                <i class="pi text-2xl cursor-pointer" [ngClass]="{'pi-heart text-600': !liked, 'pi-heart-fill text-orange-500': liked}" (click)="liked = !liked"></i>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<p-tabView>
+  <p-tabPanel header="Details">
+      <div class="grid mt-4">
+          <div class="col-12 lg:col-4">
+              <div class="font-medium text-xl text-900 mb-3">Share your experience</div>
+              <p class="text-600 p-0 mt-0 mb-3 line-height-3">Orci a scelerisque purus semper eget duis at tellus at. Ut diam quam nulla porttitor.</p>
+              <button pButton pRipple label="Write a review" class="p-button-rounded"></button>
+          </div>
+          <div class="col-12 lg:col-4 flex align-items-start justify-content-center py-5 lg:py-0">
+              <div>
+                  <span class="text-5xl text-900 font-bold mr-2">190</span>
+                  <span class="text-5xl text-600">Reviews</span>
+                  <div class="mt-3 text-center">
+                      <i class="pi pi-star-fill text-yellow-500 text-2xl mr-1"></i>
+                      <i class="pi pi-star-fill text-yellow-500 text-2xl mr-1"></i>
+                      <i class="pi pi-star-fill text-yellow-500 text-2xl mr-1"></i>
+                      <i class="pi pi-star-fill text-yellow-500 text-2xl mr-1"></i>
+                      <i class="pi pi-star-fill text-300 text-2xl "></i>
+                  </div>
+              </div>
+          </div>
+          <div class="col-12 lg:col-4">
+              <ul class="list-none p-0 m-0">
+                  <li class="flex align-items-center mb-2">
+                      <span class="text-900 font-medium mr-1 w-1rem">5</span>
+                      <i class="pi pi-star-fill text-yellow-500 mr-2"></i>
+                      <div style="height:7px" class="border-round overflow-hidden flex-auto surface-300">
+                          <div class="h-full bg-yellow-500 w-9 border-round"></div>
+                      </div>
+                      <span class="text-500 font-medium ml-2">75%</span>
+                  </li>
+                  <li class="flex align-items-center mb-2">
+                      <span class="text-900 font-medium mr-1 w-1rem">4</span>
+                      <i class="pi pi-star-fill text-yellow-500 mr-2"></i>
+                      <div style="height:7px" class="border-round overflow-hidden flex-auto surface-300">
+                          <div class="h-full bg-yellow-500 w-6 border-round"></div>
+                      </div>
+                      <span class="text-500 font-medium ml-2">50%</span>
+                  </li>
+                  <li class="flex align-items-center mb-2">
+                      <span class="text-900 font-medium mr-1 w-1rem">3</span>
+                      <i class="pi pi-star-fill text-yellow-500 mr-2"></i>
+                      <div style="height:7px" class="border-round overflow-hidden flex-auto surface-300">
+                          <div class="h-full bg-yellow-500 w-2 border-round"></div>
+                      </div>
+                      <span class="text-500 font-medium ml-2">20%</span>
+                  </li>
+                  <li class="flex align-items-center mb-2">
+                      <span class="text-900 font-medium mr-1 w-1rem">2</span>
+                      <i class="pi pi-star-fill text-yellow-500 mr-2"></i>
+                      <div style="height:7px" class="border-round overflow-hidden flex-auto surface-300">
+                          <div class="h-full bg-yellow-500 w-4 border-round"></div>
+                      </div>
+                      <span class="text-500 font-medium ml-2">40%</span>
+                  </li>
+                  <li class="flex align-items-center mb-2">
+                      <span class="text-900 font-medium mr-1 w-1rem">1</span>
+                      <i class="pi pi-star-fill text-yellow-500 mr-2"></i>
+                      <div style="height:7px" class="border-round overflow-hidden flex-auto surface-300">
+                          <div class="h-full bg-yellow-500 w-3 border-round"></div>
+                      </div>
+                      <span class="text-500 font-medium ml-2">30%</span>
+                  </li>
+              </ul>
           </div>
       </div>
-  </div>
+      <div class="mt-5">
+          <ul class="list-none m-0 p-0">
+              <li class="py-5 border-top-1 surface-border">
+                  <div class="flex align-items-center justify-content-between mb-3">
+                      <div class="flex align-items-center">
+                          <img src="assets/images/blocks/avatars/circle/avatar-m-1.png" class="w-3rem h-3rem flex-shrink-0 mr-3" />
+                          <div class="flex flex-column">
+                              <span class="text-900 font-medium mb-1">Robert Fox</span>
+                              <span class="text-500 font-medium text-sm">February 3, 2022</span>
+                          </div>
+                      </div>
+                      <div class="flex align-items-center">
+                          <span class="mr-2">
+                              <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+                              <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+                              <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+                              <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+                              <i class="pi pi-star-fill text-yellow-500"></i>
+                          </span>
+                          <span class="font-medium">5</span>
+                      </div>
+                  </div>
+                  <p class="text-600 p-0 m-0 line-height-3">Scelerisque varius morbi enim nunc. Arcu bibendum at varius vel pharetra vel turpis nunc eget. Elit ut aliquam purus sit amet luctus. Aliquam etiam erat velit scelerisque in.</p>
+              </li>
+              <li class="py-5 border-top-1 surface-border">
+                  <div class="flex align-items-center justify-content-between mb-3">
+                      <div class="flex align-items-center">
+                          <img src="assets/images/blocks/avatars/circle/avatar-f-3.png" class="w-3rem h-3rem flex-shrink-0 mr-3" />
+                          <div class="flex flex-column">
+                              <span class="text-900 font-medium mb-1">Savannah Williams</span>
+                              <span class="text-500 font-medium text-sm">February 4, 2022</span>
+                          </div>
+                      </div>
+                      <div class="flex align-items-center">
+                          <span class="mr-2">
+                              <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+                              <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+                              <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+                              <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+                              <i class="pi pi-star-fill text-yellow-500"></i>
+                          </span>
+                          <span class="font-medium">5</span>
+                      </div>
+                  </div>
+                  <p class="text-600 p-0 m-0 line-height-3">Orci porta non pulvinar neque laoreet suspendisse interdum consectetur. Vitae elementum curabitur vitae nunc sed velit dignissim sodales ut.</p>
+              </li>
+              <li class="py-5 border-top-1 surface-border">
+                  <div class="flex align-items-center justify-content-between mb-3">
+                      <div class="flex align-items-center">
+                          <img src="assets/images/blocks/avatars/circle/avatar-f-2.png" class="w-3rem h-3rem flex-shrink-0 mr-3" />
+                          <div class="flex flex-column">
+                              <span class="text-900 font-medium mb-1">Kathryn Murphy</span>
+                              <span class="text-500 font-medium text-sm">February 5, 2022</span>
+                          </div>
+                      </div>
+                      <div class="flex align-items-center">
+                          <span class="mr-2">
+                              <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+                              <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+                              <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+                              <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+                              <i class="pi pi-star-fill text-yellow-500"></i>
+                          </span>
+                          <span class="font-medium">5</span>
+                      </div>
+                  </div>
+                  <p class="text-600 p-0 m-0 line-height-3">Sollicitudin nibh sit amet commodo nulla facilisi nullam vehicula. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis. </p>
+              </li>
+          </ul>
+      </div>
 
-  <div class="grid product-rich-desc">
+  </p-tabPanel>
+  <p-tabPanel header="Reviews">
+      <ul class="list-none p-0 m-0">
+          <li class="pb-5 border-bottom-1 surface-border">
+              <span>
+                  <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+                  <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+                  <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+                  <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+                  <i class="pi pi-star-fill text-gray-500"></i>
+              </span>
+              <div class="text-900 font-medium text-xl my-3">Absolute Perfection!</div>
+              <p class="mx-0 mt-0 mb-3 text-700 line-height-3">Blandit libero volutpat sed cras ornare arcu dui vivamus. Arcu dictum varius duis at consectetur lorem donec massa. Imperdiet proin fermentum leo vel orci porta non. Porttitor rhoncus dolor purus non.</p>
+              <span class="text-600 font-medium">Darlene Robertson, 2 days ago</span>
+          </li>
+          <li class="py-5 border-bottom-1 surface-border">
+              <span>
+                  <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+                  <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+                  <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+                  <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+                  <i class="pi pi-star-fill text-yellow-500"></i>
+              </span>
+              <div class="text-900 font-medium text-xl my-3">Classy</div>
+              <p class="mx-0 mt-0 mb-3 text-700 line-height-3">Venenatis cras sed felis eget. Proin nibh nisl condimentum id venenatis a condimentum.</p>
+              <span class="text-600 font-medium">Kristin Watson, 2 days ago</span>
+          </li>
+      </ul>
+  </p-tabPanel>
+  <p-tabPanel header="Shipping and Returns">
+      <p class="line-height-3 text-700 p-0 mx-0 mt-0 mb-4">Mattis aliquam faucibus purus in massa tempor nec feugiat nisl. Justo donec enim diam vulputate ut pharetra. Tempus egestas sed sed risus.
+          Feugiat sed lectus vestibulum mattis. Tristique nulla aliquet enim tortor at auctor urna nunc. Habitant morbi tristique senectus et. Facilisi nullam vehicula ipsum.</p>
 
-  </div>
+      <div class="grid">
+          <div class="col-12 md:col-6">
+              <span class="text-900 block font-medium mb-3">Shipping Costs</span>
+              <ul class="py-0 pl-3 m-0 text-700 mb-3">
+                  <li class="mb-2">Japan - JPY 2,500.</li>
+                  <li class="mb-2">Europe – EUR 10</li>
+                  <li class="mb-2">Switzerland – CHF 10</li>
+                  <li class="mb-2">Canada – CAD 25</li>
+                  <li class="mb-2">USA – USD 20</li>
+                  <li class="mb-2">Australia – AUD 30</li>
+                  <li class="mb-2">United Kingdom – GBP 10</li>
+              </ul>
+          </div>
+          <div class="col-12 md:col-6">
+              <span class="text-900 block font-medium mb-3">Return Policy</span>
+              <p class="line-height-3 text-700 p-0 m-0">Pharetra et ultrices neque ornare aenean euismod elementum nisi. Diam phasellus vestibulum lorem sed. Mattis molestie a iaculis at. </p>
+          </div>
+      </div>
+  </p-tabPanel>
+</p-tabView>
 </div>

@@ -1,66 +1,62 @@
-<p-card class="shopping-cart">
+<div class="surface-section px-4 py-8 md:px-6 lg:px-8">
+  <ul class="list-none p-0 m-0" *ngFor="let cart of cartItems">
+      <li class="flex flex-column md:flex-row py-6 border-top-1 border-bottom-1 surface-border md:align-items-center">
+          <img src="{{ cart.imageUrl }}" class="w-12rem flex-shrink-0 mx-auto md:mx-0" />
+          <div class="flex-auto py-5 md:pl-5">
+              <div class="flex flex-wrap align-items-start sm:align-items-center sm:flex-row sm:justify-content-between surface-border pb-6">
+                  <div class="w-full sm:w-6 flex flex-column">
+                      <span class="text-900 text-xl font-medium mb-3">{{ cart.name }}</span>
+                  </div>
+                  <div class="w-full sm:w-6 flex align-items-start justify-content-between mt-3 sm:mt-0">
+                      <div>
+                          <p-dropdown [options]="quantityOptions"></p-dropdown>
+                      </div>
+                      <div class="flex flex-column sm:align-items-end">
+                        <span class="text-900 text-2xl font-medium mb-2 sm:mb-3">{{ cart.unitPrice | currency: "USD"}}</span>
 
-      <p-table [value]="cartItems" [responsive]="true">
-
-          <ng-template pTemplate="header">
-              <tr>
-                  <th>Image</th>
-                  <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
-                  <th pSortableColumn="price">Price <p-sortIcon field="price"></p-sortIcon></th>
-                  <th>Quantity</th>
-                  <th>Total</th>
-                  <th></th>
-              </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-cartItem>
-              <tr>
-                  <td style="width: 15%; min-width: 7rem;">
-                      <img src="{{ cartItem.imageUrl }}" width="150">
-                  </td>
-                  <td style="width: 25%; min-width: 7rem;">{{cartItem.name}}</td>
-                  <td style="width: 15%; min-width: 8rem;">{{cartItem.unitPrice | currency:'USD'}}</td>
-                  <td>
-                    <p-inputNumber [(ngModel)]="cartItem.quantity" inputId="minmax" inputId="minmax" mode="decimal" [min]="1" [max]="100">
-                    </p-inputNumber>
-                </td>
-                <td style="width: 10%; min-width: 8rem;">{{ totalQuantity }}</td>
-                    <td>
-                      <div class="flex">
-                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="onDelete(cartItem)"></button>
+                        <a class="cursor-pointer text-pink-500 font-medium hover:text-pink-600 transition-colors transition-duration-300" tabindex="0">Remove</a>
                         </div>
-                        <td>
-              </tr>
-          </ng-template>
-
-          <ng-template pTemplate="summary">
-            <tr class="flex justify-content-end flex-wrap">
-              <td style="width: 20%; min-width: 7rem;">Subtotal:</td>
-              <td style="width: 20%; min-width: 7rem;">{{ subtotal | currency: "USD"}}</td>
-            </tr>
-            <tr class="flex justify-content-end flex-wrap">
-              <td style="width: 20%; min-width: 7rem;">Shipping:</td>
-              <td style="width: 20%; min-width: 7rem;">Free</td>
-            </tr>
-            <tr class="flex justify-content-end flex-wrap">
-                <td style="width: 20%; min-width: 7rem;">Total:</td>
-                <td style="width: 20%; min-width: 7rem;">{{ total | currency: "USD"}}</td>
-              </tr>
-
-<tr class="flex justify-content-end flex-wrap">
-  <td button pButton pRipple label="Checkout"  class="w-2 p-2 text-xl" [routerLink]="['/checkout']"></td>
-</tr>
-
-            </ng-template>
-
-          </p-table>
-
-
-  <!-- if card empty -->
-  <div
-  *ngIf="cartItems.length == 0"
-  class="alert alert-warning col-md-12"
-  role="alert"
->
-  Your Shopping Cart is empty.
+                  </div>
+              </div>
+              <div class="flex flex-column">
+                  <span class="inline-flex align-items-center mb-3">
+                      <i class="pi pi-envelope text-600 mr-2"></i>
+                      <span class="text-600 mr-2">Order today.</span>
+                  </span>
+                  <span class="inline-flex align-items-center mb-3">
+                      <i class="pi pi-send text-600 mr-2"></i>
+                      <span class="text-600 mr-2">Delivery by <span class="font-bold">Dec 23.</span></span>
+                  </span>
+                  <span class="flex align-items-center">
+                      <i class="pi pi-exclamation-triangle text-600 mr-2"></i>
+                      <span class="text-600">Only 8 Available.</span>
+                  </span>
+              </div>
+          </div>
+      </li>
+  </ul>
+  <div class="flex">
+      <div class="w-12rem hidden md:block"></div>
+      <ul class="list-none py-0 pr-0 pl-0 md:pl-5 mt-6 mx-0 mb-0 flex-auto">
+          <li class="flex justify-content-between mb-4">
+              <span class="text-xl text-900">Subtotal</span>
+              <span class="text-xl text-900">{{ subtotal | currency: "USD"}}</span>
+          </li>
+          <li class="flex justify-content-between mb-4">
+              <span class="text-xl text-900">Shipping</span>
+              <span class="text-xl text-900">Free</span>
+          </li>
+          <li class="flex justify-content-between mb-4">
+              <span class="text-xl text-900">VAT</span>
+              <span class="text-xl text-900">$8.00</span>
+          </li>
+          <li class="flex justify-content-between border-top-1 surface-border mb-4 pt-4">
+              <span class="text-xl text-900 font-bold text-3xl">Total</span>
+              <span class="text-xl text-900 font-bold text-3xl">{{ total | currency: "USD"}}</span>
+          </li>
+          <li class="flex justify-content-end">
+              <button pButton pRipple [routerLink]="['/checkout']" label="Check Out"></button>
+          </li>
+      </ul>
+  </div>
 </div>
-

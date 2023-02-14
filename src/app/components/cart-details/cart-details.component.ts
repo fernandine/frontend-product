@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit } from '@angular/core';
 import { CartItem } from 'src/app/common/cart-item';
 import { CartService } from 'src/app/services/cart.service';
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'app-cart-details',
@@ -13,8 +13,10 @@ export class CartDetailsComponent implements OnInit {
   cartItems: CartItem[] = [];
   totalPrice: number = 0;
   totalQuantity: number = 0;
+  quantityOptions: SelectItem[] = [{label: '1', value: 1 }, {label: '2', value: 2 }, {label: '3', value: 3}, {label: '4', value: 4}];
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService,
+    ) {}
 
   ngOnInit() {
     this.listCartDetails();

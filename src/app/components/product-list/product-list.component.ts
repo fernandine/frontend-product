@@ -9,8 +9,7 @@ import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss']
+  templateUrl: './product-list.component.html'
 })
 export class ProductListComponent implements OnInit {
   darkMode = true;
@@ -48,6 +47,7 @@ export class ProductListComponent implements OnInit {
       this.listProductCategories();
     })
   }
+
 
   listProductCategories() {
     this.productService.getProductCategories().subscribe(

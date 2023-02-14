@@ -70,24 +70,33 @@ import { TreeModule } from 'primeng/tree';
 import { TreeTableModule } from 'primeng/treetable';
 import { TriStateCheckboxModule } from 'primeng/tristatecheckbox';
 import {BadgeModule} from 'primeng/badge';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { RippleModule } from 'primeng/ripple';
+import { DropdownModule } from 'primeng/dropdown';
+import { DividerModule } from 'primeng/divider';
+import { StyleClassModule } from 'primeng/styleclass';
 
 
 @NgModule({
   imports: [CommonModule],
   exports: [
+    StyleClassModule,
     CalendarModule,
     ChipsModule,
     InputTextModule,
+    DividerModule,
     ListboxModule,
     MultiSelectModule,
     RadioButtonModule,
     SliderModule,
     SelectButtonModule,
+    DropdownModule,
     TriStateCheckboxModule,
     AutoCompleteModule,
     CheckboxModule,
     ColorPickerModule,
     EditorModule,
+    RippleModule,
     InputSwitchModule,
     InputTextareaModule,
     InputMaskModule,
@@ -102,7 +111,6 @@ import {BadgeModule} from 'primeng/badge';
     PickListModule,
     TableModule,
     TreeTableModule,
-
     DataViewModule,
     OrderListModule,
     PaginatorModule,
@@ -132,10 +140,9 @@ import {BadgeModule} from 'primeng/badge';
     MenubarModule,
     SlideMenuModule,
     TabMenuModule,
-
+    InputNumberModule,
     MessagesModule,
     MessageModule,
-
     GalleriaModule,
     DragDropModule,
     ProgressBarModule,

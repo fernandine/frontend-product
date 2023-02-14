@@ -1,22 +1,18 @@
-<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-  <div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
-    <div class="flex flex-column align-items-center justify-content-center">
-    <h1>Contact Us</h1>
-    <div>
-        <label class="block text-900 text-xl font-medium mb-2" for="name">Name</label>
-        <input pInputText class="w-full md:w-30rem mb-5" id="name" type="text" placeholder="John Max" formControlName="name" />
 
-        <label class="block text-900 text-xl font-medium mb-2" for="email">Email</label>
-        <input pInputText class="w-full md:w-30rem mb-5" id="email" type="email" placeholder="john@email.com.br" formControlName="email" />
-
-        <label class="block text-900 text-xl font-medium mb-2" for="subject">Subject</label>
-        <input pInputText class="w-full md:w-30rem mb-5" id="subject" type="text" formControlName="subject" />
-
-        <label class="block text-900 text-xl font-medium mb-2" for="message">Message</label>
-        <textarea pInputTextarea class="w-full h-8rem md:w-30rem mb-5" id="message" formControlName="message"></textarea>
-      </div>
-      <button pButton pRipple label="Sign In" class="w-full p-3 text-xl" [routerLink]="['/oauth/token']"></button>
-    </div>
-  </div>
-</form>
-
+<div class="grid">
+	<div class="col-12 md:col-6">
+		<div class="card p-fluid">
+			<h5>Vertical</h5>
+			<div class="field">
+				<label htmlFor="name1">Name</label>
+				<input pInputText id="name1" type="text" />
+			</div>
+			<div class="field">
+				<label htmlFor="email1">Email</label>
+				<input pInputText id="email1" type="text" />
+			</div>
+			<div class="field">
+				<label htmlFor="age1">Age</label>
+				<input pInputText id="age1" type="text" />
+			</div>
+		</div>

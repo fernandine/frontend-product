@@ -1,55 +1,26 @@
-<div class="ui-dark-theme">
-<mat-card>
-  <mat-toolbar class="listCategory" color="primary">
-    <button *ngFor="let category of productCategories">
-      <mat-button
-        routerLink="/categories/{{ category.id }}"
-        routerLinkActive="router-link-active"
-        >{{ category.categoryName }}</mat-button
-      >
-    </button>
-    <button (click)="toggleTheme()">Toggle Dark Mode</button>
-
-  </mat-toolbar>
-
-<div class="featured-products" >
-
-  <ng-template pTemplate="header" >
-    <div class="flex flex-column md:flex-row md:justify-content-between gap-2">
-      <p-dropdown [options]="sortOptions" placeholder="Sort By Price" ></p-dropdown>
-    </div>
-  </ng-template>
-
-    <div class="grid">
-
-        <div class="col-3" *ngFor="let product of products" >
-          <div class="product-item">
-            <div class="product-item-wrapper">
-                <img [routerLink]="['/products', product.id]" [src]="product.imageUrl" alt="product_image" class="image" />
-                <h4 [routerLink]="['/products', product.id]" class="name">{{ product.name }}</h4>
-                <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false" styleClass="mb-2"></p-rating>
-
-                <h5 class="price">{{ product.unitPrice | currency }}</h5>
-                <p-button
-                  styleClass="mt-3 add-to-cart"
-                  label="Add to cart"
-                  icon="pi pi-shopping-cart"
-                  (click)="addToCart(product)"
-                  >
-                </p-button>
-            </div>
+<div class="surface-section px-4 py-8 md:px-6 lg:px-8">
+  <div class="grid -mt-3 -ml-3 -mr-3">
+        <div class="p-2 col-3 md:col-6 lg:col-3 mb-5 md:mb-0" *ngFor="let product of products" >
+          <div class="relative mb-3" >
+            <img [routerLink]="['/products', product.id]" [src]="product.imageUrl" alt="product_image" class="w-full" />
+                  <!--span class="bg-pink-500 text-pink-50 font-bold px-2 py-1 absolute" style="border-radius: 1rem; right: 1rem; bottom: 1rem">{{ discount }}</span-->
+              </div>
+              <span class="text-900 font-medium text-lg">{{ product.name }}</span>
+              <div class="my-3">
+                <p-rating [ngModel]="product.rating" [readonly]="true" [cancel]="false" styleClass="mr-1"></p-rating>
+                <!--span class="text-500">{{ reviews }}</span-->
+              </div>
+                <div class="mb-4">
+                  <span class="line-through text-600">{{ (product.unitPrice ? product.unitPrice + 20 : product.unitPrice) | currency: "USD" }}</span>
+                  <span class="font-bold text-900 ml-2">{{ product.unitPrice | currency: "USD" }}</span>
+              </div>
+              <p-button
+              styleClass="mt-3 add-to-cart"
+              label="Add to cart"
+              icon="pi pi-shopping-cart"
+              (click)="addToCart(product)"
+              >
+            </p-button>
         </div>
-          </div>
-
-    </div>
-</div>
-
-<p-paginator
-[rows]="pageSize"
-[totalRecords]="products.length"
-(onPageChange)="onPageChange($event)"
-[pageLinkSize]="5"
-></p-paginator>
-
-</mat-card>
+  </div>
 </div>
