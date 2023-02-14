@@ -1,6 +1,5 @@
 <div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
   <div class="flex flex-column align-items-center justify-content-center">
-      <div style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
           <div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius:53px">
               <div class="text-center mb-5">
                   <div class="text-900 text-3xl font-medium mb-3">Welcome, {{ userFullName }}</div>
@@ -24,7 +23,25 @@
                   </div>
                   <button pButton pRipple label="Sign In" class="w-full p-3 text-xl" [routerLink]="['/oauth/token']"></button>
               </div>
+
+              <p-divider align="center" styleClass="my-4">
+                <span class="text-600 font-normal text-sm">OR</span>
+            </p-divider>
+
+
+              <div class="flex justify-content-between">
+                <button pRipple class="mr-2 w-6 font-medium border-1 surface-border surface-100 py-3 px-2 p-component hover:surface-200 active:surface-300 text-900 cursor-pointer transition-colors transition-duration-150 inline-flex align-items-center justify-content-center">
+                    <i class="pi pi-facebook text-indigo-500 mr-2"></i>
+                    <span>Sign in With Facebook</span>
+                </button>
+                <button pRipple class="ml-2 w-6 font-medium border-1 surface-border surface-100 py-3 px-2 p-component hover:surface-200 active:surface-300 text-900 cursor-pointer transition-colors transition-duration-150 inline-flex align-items-center justify-content-center">
+                    <i class="pi pi-google text-red-500 mr-2"></i>
+                    <span>Sign in With Google</span>
+                </button>
+            </div>
+
+
           </div>
-      </div>
+
   </div>
 </div>
