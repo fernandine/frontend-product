@@ -40,6 +40,7 @@ export class CartDetailsComponent implements OnInit {
 
   onDelete(cartItem: CartItem) {
     this.cartService.remove(cartItem);
+
   }
 
   get subtotal() {

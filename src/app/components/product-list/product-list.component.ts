@@ -16,7 +16,7 @@ export class ProductListComponent implements OnInit {
 
   products: Product[] = [];
   sortOptions: SelectItem[] = [];
-  productCategories: ProductCategory[] = [];
+  productCategories!: ProductCategory[];
   nameCategory!: ProductCategory;
   currentCategoryId: number = 1;
   previousCategoryId: number = 1;
@@ -50,11 +50,12 @@ export class ProductListComponent implements OnInit {
 
 
   listProductCategories() {
+
     this.productService.getProductCategories().subscribe(
-      (data: any) => {
+      data => {
         this.productCategories = data;
       }
-    )
+    );
   }
 
   listProducts() {

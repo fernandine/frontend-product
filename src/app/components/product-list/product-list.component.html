@@ -1,3 +1,13 @@
+<div class="surface-overlay px-2 lg:px-5 flex align-items-stretch relative border-bottom-1 surface-border" style="min-height: 80px">
+      <ul class="list-none p-0 m-0 flex">
+            <li class="flex" *ngFor="let cat of productCategories">
+                  <a class="font-medium inline-flex align-items-center cursor-pointer border-bottom-2 border-transparent hover:border-primary px-3 text-700 select-none" routerLink="/categories/{{ cat.id }}" routerLinkActive="active-link" style="text-decoration:none">
+                    {{ cat.categoryName }}
+                </a>
+          </li>
+      </ul>
+</div>
+
 <div class="surface-section px-4 py-8 md:px-6 lg:px-8">
   <div class="grid -mt-3 -ml-3 -mr-3">
         <div class="p-2 col-3 md:col-6 lg:col-3 mb-5 md:mb-0" *ngFor="let product of products" >
