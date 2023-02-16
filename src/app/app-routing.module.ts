@@ -11,6 +11,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { RegisterComponent } from './components/register/register.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -26,7 +27,7 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'checkout', component: CheckoutComponent },
+  { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
   { path: 'cart-details', component: CartDetailsComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
   { path: 'search/:keyword', component: ProductListComponent },

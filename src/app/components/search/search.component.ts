@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './search.component.html'
 })
 export class SearchComponent {
+
 @Input() myInput: any;
 
   constructor( private router: Router ) {}

@@ -30,6 +30,12 @@ export class ProductService {
       .pipe(map(response => response.content));
   }
 
+  getProduct(theProductId: number): Observable<Product> {
+
+    const productUrl = `${this.baseUrl}/${theProductId}`;
+    return this.httpClient.get<Product>(productUrl);
+  }
+
   getProductListPaginate(
     thePage: number,
     thePageSize: number,
@@ -71,8 +77,6 @@ export class ProductService {
     return this.httpClient.get<Product>(url)
       .pipe(map(product => product))
   }
-
-
 }
 
 interface ApiResponseProduct {

@@ -29,7 +29,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoadingInterceptor } from './interceptor/loading.interceptor';
 import { PrimeNgModule } from './primeng.module';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
-
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
     declarations: [
@@ -53,6 +53,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     ],
     providers: [
         ProductService,
+        [AuthGuard],
         CartService,
         provideHttpClient(),
         { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },

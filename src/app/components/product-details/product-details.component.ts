@@ -29,16 +29,16 @@ export class ProductDetailsComponent implements OnInit {
 
 
   handleProductDetails() {
-    const theProductId: number = +this.activatedRoute.snapshot.paramMap.get('id')!
+    const theProductId: number = +this.activatedRoute.snapshot.paramMap.get('id')!;
     this.productService.getOneProductById(theProductId).subscribe(
       (data: any) => {
         this.product = data
       })
   }
 
-  addToCart(product: Product) {
-  //  console.log(`Adding to cart: ${this.product.name}, ${this.product.unitPrice}`)
+  addToCart() {
     const theCartItem = new CartItem(this.product);
     this.cartService.addToCart(theCartItem);
+    this.quantity = 1;
   }
 }
