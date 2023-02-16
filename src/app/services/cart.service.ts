@@ -8,9 +8,6 @@ import { CartItem } from '../common/cart-item';
   providedIn: 'root'
 })
 export class CartService {
-  getCart() {
-    throw new Error('Method not implemented.');
-  }
 
   cartItems: CartItem[] = [];
   totalPrice: Subject<number> = new BehaviorSubject<number>(0);
@@ -71,6 +68,18 @@ export class CartService {
 
     for (let cartItem of this.cartItems) {
       const subTotalPrice = cartItem.unitPrice * cartItem.quantity;
+    }
+  }
+
+  decrementQuantity(theCartItem: CartItem) {
+
+    theCartItem.quantity--;
+
+    if (theCartItem.quantity === 0) {
+      this.remove(theCartItem);
+    }
+    else {
+      this.computeCartTotals();
     }
   }
 
