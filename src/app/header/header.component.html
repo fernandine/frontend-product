@@ -1,0 +1,42 @@
+<div class="bg-orange-500 py-3 px-6 shadow-2 flex align-items-center justify-content-between relative lg:static" style="min-height: 84px">
+  <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" alt="Image" height="40" class="mr-0 lg:mr-6">
+  <a pRipple class="cursor-pointer block lg:hidden text-indigo-100" pStyleClass="@next" enterClass="hidden" leaveToClass="hidden" >
+      <i class="pi pi-bars text-4xl"></i>
+  </a>
+  <div class="align-items-center flex-grow-1 justify-content-between hidden lg:flex absolute lg:static w-full bg-orange-500 left-0 top-100 z-1 shadow-2 lg:shadow-none">
+      <ul class="list-none p-0 m-0 flex lg:align-items-center select-none flex-column lg:flex-row">
+          <li>
+              <a pRipple routerLink="/products" class="flex px-6 p-3 lg:px-3 lg:py-2 align-items-center text-indigo-100 hover:text-indigo-50 hover:bg-orange-600 font-medium border-round cursor-pointer transition-colors transition-duration-150">
+                  <i class="pi pi-home mr-2"></i>
+                  <span>Home</span>
+              </a>
+          </li>
+          <li>
+              <a pRipple routerLink="/about" class="flex px-6 p-3 lg:px-3 lg:py-2 align-items-center text-indigo-100 hover:text-indigo-50 hover:bg-orange-600 font-medium border-round cursor-pointer transition-colors transition-duration-150">
+                  <span>About us</span>
+              </a>
+          </li>
+          <li>
+            <a pRipple routerLink="/contact" class="flex px-6 p-3 lg:px-3 lg:py-2 align-items-center text-indigo-100 hover:text-indigo-50 hover:bg-orange-600 font-medium border-round cursor-pointer transition-colors transition-duration-150">
+                <span>Contact</span>
+            </a>
+        </li>
+      </ul>
+      <ul class="list-none p-0 m-0 flex lg:align-items  ">
+        <li class="flex-order-2 lg:flex-order-0">
+        <app-search></app-search>
+      </li>
+                <div class="ui-toolbar-group-right flex align-items-baseline flex-wrap gap-1 md:gap-2 xl:gap-4">
+
+                  <button pButton pRipple type="button" *ngIf="(isLoggedIn)" routerLink="/admin" label="Area Admin" class="p-button-text text-green-800"></button>
+
+                  <button pButton pRipple label="Login" *ngIf="!(isLoggedIn)" icon="pi pi-user" routerLink="/login" class="p-button-text text-white-alpha-90"></button>
+                  <button pButton pRipple label="Olá, {{ getUsername() }}" *ngIf="(isLoggedIn)" icon="pi pi-user" routerLink="/account" class="p-button-text text-white-alpha-90"></button>
+                  <button pButton pRipple label="Register" *ngIf="!(isLoggedIn)" routerLink="/register" class="p-button-text text-white-alpha-90"></button>
+                  <button pButton pRipple type="button" *ngIf="(isLoggedIn)" (click)="logout()" label="Sair" class="p-button-text text-white-alpha-90"></button>
+
+                </div>
+                <app-cart-status style="margin: 0 40px;"></app-cart-status>
+      </ul>
+  </div>
+</div>

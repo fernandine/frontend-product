@@ -1,8 +1,8 @@
 <div class="surface-overlay px-2 lg:px-5 flex align-items-stretch relative border-bottom-1 surface-border" style="min-height: 80px">
       <ul class="list-none p-0 m-0 flex">
-            <li class="flex" *ngFor="let cat of productCategories">
+            <li class="flex" *ngFor="let cat of categories">
                   <a class="font-medium inline-flex align-items-center cursor-pointer border-bottom-2 border-transparent hover:border-primary px-3 text-700 select-none" routerLink="/categories/{{ cat.id }}" routerLinkActive="active-link" style="text-decoration:none">
-                    {{ cat.categoryName }}
+                    {{ cat.name }}
                 </a>
           </li>
       </ul>

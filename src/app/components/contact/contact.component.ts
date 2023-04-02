@@ -4,8 +4,7 @@ import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css']
+  templateUrl: './contact.component.html'
 })
 export class ContactComponent implements OnInit {
 

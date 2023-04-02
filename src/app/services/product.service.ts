@@ -1,37 +1,36 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Product } from '../common/product';
 import { map, Observable } from 'rxjs';
-import { ProductCategory } from '../common/product-category';
 import { environment } from 'src/environments/environment';
+import { Category } from '../common/category';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  subscribe(arg0: { next: (resp: any) => void; }) {
-    throw new Error('Method not implemented.');
-  }
 
   private baseUrl = environment.shopApiUrl + '/products';
-  private categoryUrl = environment.shopApiUrl + '/categories';
   private searchUrl = environment.shopApiUrl + '/products/search'
 
   constructor(private httpClient: HttpClient) { }
 
   getProductList(theCategoryId: number): Observable<Product[]> {
-
     const searchUrl = `${this.baseUrl}/search/categories?id=${theCategoryId}`;
-    return this.getProducts(searchUrl)
+    return this.getProductSearch(searchUrl)
   }
 
-  getProducts(searchUrl: string): Observable<Product[]> {
+  listProductAdmin(): Observable<Product[]> {
+    return this.httpClient.get<ResponseProduct>(this.baseUrl)
+      .pipe(map(response => response.content));
+  }
+
+  getProductSearch(searchUrl: string): Observable<Product[]> {
     return this.httpClient.get<ApiResponseProduct>(searchUrl)
       .pipe(map(response => response.content));
   }
 
   getProduct(theProductId: number): Observable<Product> {
-
     const productUrl = `${this.baseUrl}/${theProductId}`;
     return this.httpClient.get<Product>(productUrl);
   }
@@ -48,16 +47,10 @@ export class ProductService {
       .pipe(map(response => response))
   }
 
-  getProductCategories(): Observable<ProductCategory[]> {
-    return this.httpClient.get<ResponseProductCategory>(this.categoryUrl)
-      .pipe(map(response => response.content));
-
-  }
-
   searchProducts(theKeyword: string | null): Observable<Product[]> {
     const searchUrl = `${this.searchUrl}?name=${theKeyword}`;
     console.log(searchUrl)
-    return this.getProducts(searchUrl)
+    return this.getProductSearch(searchUrl)
   }
 
   searchProductsPaginate(
@@ -77,6 +70,18 @@ export class ProductService {
     return this.httpClient.get<Product>(url)
       .pipe(map(product => product))
   }
+
+  createProduct(product: Product): Observable<any> {
+    return this.httpClient.post(`${this.baseUrl}`, product);
+  }
+
+  updateProduct(id: number, value: any): Observable<any> {
+    return this.httpClient.put(`${this.baseUrl}/${id}`, value);
+  }
+
+  deleteProduct(id: number): Observable<any> {
+    return this.httpClient.delete(`${this.baseUrl}/${id}`);
+  }
 }
 
 interface ApiResponseProduct {
@@ -90,7 +95,6 @@ interface ApiResponseProduct {
   empty: boolean
 
 }
-
-interface ResponseProductCategory {
-  content: ProductCategory[]
+interface ResponseProduct {
+  content: Product[]
 }

@@ -1,0 +1,42 @@
+<p-table [value]="categories" [paginator]="true" [rows]="6" class="py-3 px-3" (onRowSelect)="onRowSelect($event)">
+  <ng-template pTemplate="header">
+  <tr>
+  <th>Nome</th>
+  <th></th>
+  </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-cat>
+  <tr>
+  <td>{{ cat.name }}</td>
+  <td>
+    <p-button icon="pi pi-pencil" styleClass="p-button-rounded p-button-info p-button-text"
+    (onClick)="showEditDialog(cat)">
+    </p-button>
+  <p-button icon="pi pi-times" styleClass="p-button-rounded p-button-danger p-button-text"
+  (onClick)="excluirCategoria(cat)">
+  </p-button>
+  </td>
+  </tr>
+  </ng-template>
+  </p-table>
+
+  <p-button icon="pi pi-plus" (onClick)="showAddDialog()" label="Nova categoria"></p-button>
+
+  <p-dialog header="Nova categoria" [(visible)]="displayDialog" [modal]="true" [closable]="false"
+  (onHide)="cancelSaveCategory()">
+
+    <form (ngSubmit)="saveCategory()">
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="name">Nome</label>
+          <input id="name" type="text" pInputText [(ngModel)]="category.name" name="name" required>
+        </div>
+      </div>
+      <footer>
+        <div class="border-top-1 surface-border pt-3">
+            <button pButton pRipple icon="pi pi-times" (onClick)="cancelSaveCategory()" label="Cancel" class="p-button-text"></button>
+            <button pButton pRipple icon="pi pi-check" label="Save"></button>
+        </div>
+    </footer>
+    </form>
+  </p-dialog>

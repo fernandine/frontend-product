@@ -1,45 +1,70 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-
-const AUTH_API = 'http://localhost:8080/oauth/token';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { map, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { User } from '../common/user';
+import { StorageService } from './storage.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) {}
+  private apiUrl = environment.shopApiUrl + '/oauth/token';
 
-  login(username: string, password: string): Observable<any> {
-    return this.http.post(
-      AUTH_API + 'signin',
-      {
-        username,
-        password,
-      },
-      httpOptions
+  constructor(
+    private http: HttpClient,
+    private storageService: StorageService
+  ) { }
+
+  login(username: string, password: string): Observable<boolean> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Basic ' + btoa('ecommerce:ecommerce123')
+    });
+
+    const body = new URLSearchParams();
+    body.set('username', username);
+    body.set('password', password);
+    body.set('grant_type', 'password');
+
+    return this.http.post<any>(this.apiUrl, body.toString(), { headers: headers }).pipe(
+      map(response => {
+        const token = response.access_token;
+        if (token) {
+          this.storageService.setItem('currentUser', { username, token });
+
+          return true;
+        } else {
+          return false;
+        }
+      })
     );
   }
 
-  register(username: string, email: string, password: string): Observable<any> {
-    return this.http.post(
-      AUTH_API + 'signup',
-      {
-        username,
-        email,
-        password,
-      },
-      httpOptions
-    );
+  logout(): void {
+    this.storageService.removeItem('currentUser');
   }
 
-  logout(): Observable<any> {
-    return this.http.post(AUTH_API + 'signout', { }, httpOptions);
+  getToken(): string {
+    const currentUser = this.storageService.getItem('currentUser') || {};
+    return currentUser.token;
   }
 
+  getCurrentUser(): any {
+    return this.storageService.getItem('currentUser');
+  }
+
+  isAuthenticated(): boolean {
+    const currentUser = this.storageService.getItem('currentUser');
+    return !!currentUser && !!currentUser.token;
+  }
+
+  getHeaders(): HttpHeaders {
+    const token = this.getToken();
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+  }
 }

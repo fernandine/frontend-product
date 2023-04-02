@@ -76,10 +76,19 @@ import { DropdownModule } from 'primeng/dropdown';
 import { DividerModule } from 'primeng/divider';
 import { StyleClassModule } from 'primeng/styleclass';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   imports: [CommonModule],
   exports: [
+
+    BrowserAnimationsModule,
+    HttpClientModule,
+    FormsModule,
     StyleClassModule,
     CalendarModule,
     ChipsModule,

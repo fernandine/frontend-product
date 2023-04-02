@@ -9,7 +9,7 @@ import { OrderHistory } from '../common/order-history';
 })
 export class OrderHistoryService {
 
-  private orderUrl = environment.shopApiUrl + '/orders'
+  private orderUrl = environment.shopApiUrl  + '/orders'
 
   constructor(private httpClient: HttpClient) { }
 

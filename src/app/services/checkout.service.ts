@@ -10,9 +10,9 @@ import { Purchase } from '../common/purchase';
 })
 export class CheckoutService {
 
-  private purchaseUrl = environment.shopApiUrl + '/checkout/purchase'
+  private purchaseUrl = environment.shopApiUrl  + '/checkout/purchase'
 
-  private paymentIntentUrl = environment.shopApiUrl + "/checkout/payment-intent"
+  private paymentIntentUrl = environment.shopApiUrl  + "/checkout/payment-intent"
 
   constructor(private httpClient: HttpClient) { }
 

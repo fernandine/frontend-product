@@ -5,8 +5,7 @@ import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'app-cart-details',
-  templateUrl: './cart-details.component.html',
-  styleUrls: ['./cart-details.component.scss']
+  templateUrl: './cart-details.component.html'
 })
 export class CartDetailsComponent implements OnInit {
 

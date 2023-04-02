@@ -2,10 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/api/selectitem';
 import { CartItem } from 'src/app/common/cart-item';
+import { Category } from 'src/app/common/category';
 import { Product } from 'src/app/common/product';
-import { ProductCategory } from 'src/app/common/product-category';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
+import { CategoriesService } from '../../services/categories.service';
 
 @Component({
   selector: 'app-product-list',
@@ -16,8 +17,8 @@ export class ProductListComponent implements OnInit {
 
   products: Product[] = [];
   sortOptions: SelectItem[] = [];
-  productCategories!: ProductCategory[];
-  nameCategory!: ProductCategory;
+  categories!: Category[];
+  nameCategory!: Category;
   currentCategoryId: number = 1;
   previousCategoryId: number = 1;
   searchMode: boolean = false;
@@ -35,7 +36,8 @@ export class ProductListComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private productService: ProductService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private categoryService: CategoriesService) { }
 
     toggleTheme() {
       this.darkMode = !this.darkMode;
@@ -44,16 +46,14 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
       this.listProducts();
-      this.listProductCategories();
+      this.listCategories();
     })
   }
 
-
-  listProductCategories() {
-
-    this.productService.getProductCategories().subscribe(
+  listCategories() {
+    this.categoryService.getCategory().subscribe(
       data => {
-        this.productCategories = data;
+        this.categories = data;
       }
     );
   }
@@ -67,7 +67,6 @@ export class ProductListComponent implements OnInit {
     }
   }
 
-
   handleSearchProducts() {
     const theKeyword: string = this.route.snapshot.paramMap.get('keyword')!
 
@@ -77,23 +76,19 @@ export class ProductListComponent implements OnInit {
 
     this.previousKeyword = theKeyword;
 
-  //  console.log(`keyword=${theKeyword}, pageNumber=${this.thePageNumber}`);
-
-
     this.productService.searchProductsPaginate(this.thePageNumber - 1, this.thePageSize, theKeyword)
       .subscribe(this.processResult())
   }
-
 
   handleListProducts() {
     const routeHasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
 
     if (routeHasCategoryId) {
-      // get the "id" param string. convert string to a number using the "+" symbol
+
       this.currentCategoryId = +this.route.snapshot.paramMap.get('id')!;
     }
     else {
-      // not category id available ... default to category id 1
+
       this.currentCategoryId = 1;
     }
 
@@ -101,10 +96,6 @@ export class ProductListComponent implements OnInit {
       this.thePageNumber = 1;
     }
     this.previousCategoryId = this.currentCategoryId;
-
-    //console.log(`currentCategoryId=${this.currentCategoryId},`
-    //  + `thePageNumber=${this.thePageNumber}`);
-
 
     this.productService.getProductListPaginate(
       this.thePageNumber - 1,
