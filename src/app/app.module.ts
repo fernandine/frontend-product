@@ -37,11 +37,12 @@ import { AdminComponent } from './area-admin/admin/admin.component';
 import { CategoriesComponent } from './area-admin/categories/categories.component';
 import { AdressListComponent } from './Account/adress-list/adress-list.component';
 import { AdressFormComponent } from './Account/adress-form/adress-form.component';
-
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
     declarations: [
         AppComponent,
+        ProfileComponent,
         ProductListComponent,
         SearchComponent,
         ProductDetailsComponent,

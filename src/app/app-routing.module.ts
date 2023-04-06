@@ -11,8 +11,9 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AdminComponent } from './area-admin/admin/admin.component';
 import { AccountComponent } from './Account/account/account.component';
 import { UserComponent } from './components/user/user.component';
-import { AdressFormComponent } from './Account/adress-form/adress-form.component';
 import { RegisterComponent } from './autentication/register/register.component';
+import { AdressListComponent } from './Account/adress-list/adress-list.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 const routes: Routes = [
@@ -22,12 +23,14 @@ const routes: Routes = [
   },
 
   { path: 'about', component: AboutComponent },
-  { path: 'users', component: UserComponent },
-  { path: 'adresses', component: AdressFormComponent },
+  { path: 'account', component: AccountComponent, children: [
+    { path: 'profile', component: ProfileComponent },
+    { path: 'addresses', component: AdressListComponent }
+  ]},
+
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: AdminComponent },
-  { path: 'account', component: AccountComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'cart-details', component: CartDetailsComponent },
