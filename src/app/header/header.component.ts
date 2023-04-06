@@ -11,6 +11,7 @@ import { LoginService } from '../services/login.service';
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
+
   items!: MenuItem[];
   isLoggedIn!: boolean;
   categories: Category[] = [];
@@ -19,8 +20,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private loginService: LoginService,
-    private router: Router,
-    ) { }
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.isLoggedIn = this.authService.isAuthenticated();
@@ -29,6 +30,24 @@ export class HeaderComponent implements OnInit {
       this.isLoggedIn = loggedIn;
       this.username = loggedIn ? this.getUsername() : '';
     });
+
+    this.items = [
+      {
+        label: 'Home',
+        routerLink: '/products',
+        styleClass: 'p-button-text'
+      },
+      {
+        label: 'About us',
+        routerLink: '/about',
+        styleClass: 'p-button-text'
+      },
+      {
+        label: 'Contact',
+        routerLink: '/contact',
+        styleClass: 'p-button-text'
+      }
+    ];
   }
 
   getUsername(): string {

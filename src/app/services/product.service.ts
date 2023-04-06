@@ -20,11 +20,6 @@ export class ProductService {
     return this.getProductSearch(searchUrl)
   }
 
-  listProductAdmin(): Observable<Product[]> {
-    return this.httpClient.get<ResponseProduct>(this.baseUrl)
-      .pipe(map(response => response.content));
-  }
-
   getProductSearch(searchUrl: string): Observable<Product[]> {
     return this.httpClient.get<ApiResponseProduct>(searchUrl)
       .pipe(map(response => response.content));
@@ -65,10 +60,16 @@ export class ProductService {
       .pipe(map(response => response))
   }
 
+
   getOneProductById(id: number): Observable<Product> {
     const url = `${this.searchUrl}/${id}`;
     return this.httpClient.get<Product>(url)
       .pipe(map(product => product))
+  }
+
+  getAllProducts(): Observable<Product[]> {
+    const url = `${this.baseUrl}`;
+    return this.httpClient.get<Product[]>(url);
   }
 
   createProduct(product: Product): Observable<any> {

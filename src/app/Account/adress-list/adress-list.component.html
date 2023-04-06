@@ -1,0 +1,20 @@
+<ng-container *ngFor="let address of addresses">
+    <div class="p-col-12 p-md-6 p-lg-4">
+      <p-card>
+        <h4>CEP: {{ address.cep }}</h4>
+        <p>{{ address.logradouro }} - {{ address.complemento }}</p>
+        <p>{{ address.bairro }}</p>
+        <p>{{ address.localidade }} - {{ address.uf }}</p>
+
+        <button pButton type="button" label="Editar" icon="pi pi-pencil" (click)="editAddress(address)"></button>
+        <button pButton type="button" label="Excluir" icon="pi pi-trash" (click)="deleteAddress(address)"></button>
+      </p-card>
+    </div>
+  </ng-container>
+
+
+<button pButton type="button" label="Adicionar Endereço" icon="pi pi-plus" (click)="addAddress()"></button>
+
+<p-dialog header="Adicionar Endereço" [(visible)]="showAddAddressDialog">
+  <app-adress-form></app-adress-form>
+</p-dialog>

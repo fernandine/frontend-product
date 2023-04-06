@@ -31,10 +31,13 @@ import { MessageService } from 'primeng/api';
 import { StatusRolePipe } from './status-role.pipe';
 import { RegisterComponent } from './autentication/register/register.component';
 import { LoginService } from './services/login.service';
-import { AccountComponent } from './compoonents/account/account.component';
+import { AccountComponent } from './Account/account/account.component';
 import { EditProductsComponent } from './area-admin/edit-products/edit-products.component';
-import { AdminComponent } from './compoonents/admin/admin.component';
+import { AdminComponent } from './area-admin/admin/admin.component';
 import { CategoriesComponent } from './area-admin/categories/categories.component';
+import { AdressListComponent } from './Account/adress-list/adress-list.component';
+import { AdressFormComponent } from './Account/adress-form/adress-form.component';
+
 
 @NgModule({
     declarations: [
@@ -47,9 +50,11 @@ import { CategoriesComponent } from './area-admin/categories/categories.componen
         CartDetailsComponent,
         RegisterComponent,
         CheckoutComponent,
+        AdressFormComponent,
         LoginComponent,
         UserComponent,
         OrderHistoryComponent,
+        AdressListComponent,
         HeaderComponent,
         AboutComponent,
         EditProductsComponent,

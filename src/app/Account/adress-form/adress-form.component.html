@@ -1,0 +1,35 @@
+<ng-container *ngIf="showAddressForm">
+  <form [formGroup]="addressForm" (ngSubmit)="saveNewAddress()">
+    <div class="p-field">
+      <label for="cep">CEP</label>
+      <input id="cep" formControlName="cep" required pInputMask mask="99999-999">
+    </div>
+
+    <div class="p-field">
+      <label for="logradouro">Logradouro</label>
+      <input id="logradouro" formControlName="logradouro" required pInputText>
+    </div>
+
+    <div class="p-field">
+      <label for="complemento">Complemento</label>
+      <input id="complemento" formControlName="complemento" pInputText>
+    </div>
+
+    <div class="p-field">
+      <label for="bairro">Bairro</label>
+      <input id="bairro" formControlName="bairro" required pInputText>
+    </div>
+
+    <div class="p-field">
+      <label for="localidade">Localidade</label>
+      <input id="localidade" formControlName="localidade" required pInputText>
+    </div>
+
+    <div class="p-field">
+      <label for="uf">UF</label>
+      <input id="uf" formControlName="uf" required pInputText>
+    </div>
+
+    <button pButton type="submit" label="Salvar"></button>
+  </form>
+</ng-container>

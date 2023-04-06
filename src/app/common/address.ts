@@ -1,7 +1,9 @@
 export class Address {
-  street!: string;
-  city!: string;
-  state!: string;
-  country!: string;
-  zipCode!: string;
+  id!: any;
+  cep!: string;
+  logradouro!: string;
+  complemento!: string;
+  bairro!: string;
+  localidade!: string;
+  uf!: string;
 }

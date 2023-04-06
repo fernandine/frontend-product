@@ -1,18 +1,47 @@
-
-<p-orderList [value]="products" [listStyle]="{ 'max-height': '30rem' }" header="Products" filterBy="name" filterPlaceholder="Filter by name">
-  <ng-template let-product pTemplate="item">
-      <div class="flex align-items-center p-2 w-full flex-wrap">
-          <div class="w-full text-center lg:w-auto lg:text-left">
-              <img src="{{ product.imageUrl }}" [alt]="product.name" class="mr-3 shadow-3 w-7rem mb-3 lg:w-5rem lg:mb-auto" />
-          </div>
-          <div class="flex-1">
-              <h5 class="mb-2">{{ product.name }}</h5>
-              <i class="pi pi-tag vertical-align-middle mr-2"></i>
-              <span class="vertical-align-middle line-height-1">{{ product.category }}</span>
-          </div>
-          <div class="flex flex-column align-items-end">
-              <h6 class="mb-2">{{ '$ ' + product.unitPrice }}</h6>
-          </div>
-      </div>
+<p-table [value]="products" [paginator]="true" [rows]="10" [responsive]="true">
+  <ng-template pTemplate="header">
+    <tr>
+      <th></th>
+      <th>Nome</th>
+      <th>Preço</th>
+      <th></th>
+    </tr>
   </ng-template>
-</p-orderList>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td class="p-col-fixed" style="width: 150px;">
+        <img [src]="product.imageUrl" alt="product_image" class="w-full"/>
+      </td>
+    <td>
+        {{ product.name }}<br/>
+        {{ product.category.name }}
+      </td>
+      <td>{{ product.unitPrice }}</td>
+      <td>
+        <p-button icon="pi pi-pencil" styleClass="p-button-rounded p-button-info p-button-text"
+        (onClick)="showEditDialog(product)">
+        </p-button>
+      <p-button icon="pi pi-times" styleClass="p-button-rounded p-button-danger p-button-text"
+      (onClick)="excluirProduct(product)">
+      </p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog header="Editar Produto" [(visible)]="displayDialog" [responsive]="true" [style]="{ 'width': '500px' }">
+  <div class="p-fluid">
+    <div class="p-field">
+      <label for="name" class="p-d-block">Nome</label>
+      <input id="name" type="text" [(ngModel)]="product.name" class="mb-3 p-inputtext p-d-block w-100" />
+    </div>
+    <div class="p-field">
+      <label for="unitPrice" class="p-d-block">Preço</label>
+      <input id="unitPrice" type="number" [(ngModel)]="product.unitPrice" class="p-inputtext p-d-block w-100" />
+    </div>
+  </div>
+  <div class="p-dialog-footer">
+    <button pButton label="Salvar" (click)="saveCategory()" [disabled]="!product.name || !product.unitPrice" class="mt-3 p-button-raised p-button-success"></button>
+    <button pButton label="Cancelar" (click)="cancelSaveCategory()" class="mt-3 p-button-raised p-button-secondary"></button>
+  </div>
+</p-dialog>

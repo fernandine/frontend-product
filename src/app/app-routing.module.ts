@@ -8,10 +8,11 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { AdminComponent } from './compoonents/admin/admin.component';
-import { RegisterComponent } from './autentication/register/register.component';
-import { AccountComponent } from './compoonents/account/account.component';
+import { AdminComponent } from './area-admin/admin/admin.component';
+import { AccountComponent } from './Account/account/account.component';
 import { UserComponent } from './components/user/user.component';
+import { AdressFormComponent } from './Account/adress-form/adress-form.component';
+import { RegisterComponent } from './autentication/register/register.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
 
   { path: 'about', component: AboutComponent },
   { path: 'users', component: UserComponent },
+  { path: 'adresses', component: AdressFormComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: AdminComponent },

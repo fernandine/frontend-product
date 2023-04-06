@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../common/user';
 import { StorageService } from './storage.service';
@@ -51,8 +51,13 @@ export class AuthService {
     return currentUser.token;
   }
 
-  getCurrentUser(): any {
-    return this.storageService.getItem('currentUser');
+  getCurrentUser(): { username: string, token: string, userId: number } | null {
+    const currentUser = this.storageService.getItem('currentUser');
+    if (currentUser) {
+      return currentUser;
+    } else {
+      return null;
+    }
   }
 
   isAuthenticated(): boolean {
