@@ -12,8 +12,40 @@ export class ProductService {
 
   private baseUrl = environment.shopApiUrl + '/products';
   private searchUrl = environment.shopApiUrl + '/products/search'
+  private likedProducts: Product[] = [];
 
   constructor(private httpClient: HttpClient) { }
+
+  getLikedProducts(): Product[] {
+    return this.likedProducts;
+  }
+
+  findByFavorite(favorite: boolean): Observable<Product[]> {
+    const url = `${this.baseUrl}/find?notFavorite=${!favorite}`;
+    return this.httpClient.get<Product[]>(url).pipe(
+      map(products => {
+        this.likedProducts = products.filter(p => p.favorite);
+        return this.likedProducts;
+      })
+    );
+  }
+
+  toggleFavorite(product: Product): Observable<Product> {
+    product.favorite = !product.favorite;
+    const url = `${this.baseUrl}/${product.id}`;
+
+    return this.httpClient.put<Product>(url, product).pipe(
+      map(updatedProduct => {
+        if (updatedProduct.favorite) {
+          this.likedProducts.push(updatedProduct);
+        } else {
+          const index = this.likedProducts.findIndex(p => p.id === updatedProduct.id);
+          this.likedProducts.splice(index, 1);
+        }
+        return updatedProduct;
+      })
+    );
+  }
 
   getProductList(theCategoryId: number): Observable<Product[]> {
     const searchUrl = `${this.baseUrl}/search/categories?id=${theCategoryId}`;

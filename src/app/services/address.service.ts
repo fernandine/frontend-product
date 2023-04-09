@@ -17,8 +17,18 @@ export class AddressService {
     return this.http.get<Address[]>(this.apiUrl);
   }
 
+  getByUserId(userId: number): Observable<Address[]> {
+    const url = `${this.apiUrl}/find?userId=${userId}`;
+    return this.http.get<Address[]>(url);
+  }
+
+  getById(id: number): Observable<Address[]> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Address[]>(url);
+  }
+
   getAddressByCEP(cep: string): Observable<Address> {
-    const url = `${this.apiUrl}/${cep}`;
+    const url = `${this.apiUrl}/viacep/${cep}`;
     return this.http.get<Address>(url);
   }
 
@@ -26,9 +36,8 @@ export class AddressService {
     return this.http.post<Address>(this.apiUrl, address);
   }
 
-  updateAddress(address: Address): Observable<Address> {
-    const url = `${this.apiUrl}/${address.id}`;
-    return this.http.put<Address>(url, address);
+  updateAddress(id:number, value: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, value);
   }
 
   deleteAddress(id: number): Observable<void> {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { CartItem } from 'src/app/common/cart-item';
 import { Product } from 'src/app/common/product';
@@ -11,9 +11,10 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  product!: Product;
-  liked!: boolean;
-  quantity: number = 1;
+  @Input() product!: Product;
+  @Output() favoriteProductsChanged = new EventEmitter<Product>();
+
+  quantity = 1;
 
   constructor(
     private cartService: CartService,
@@ -26,7 +27,6 @@ export class ProductDetailsComponent implements OnInit {
       this.handleProductDetails()
     })
   }
-
 
   handleProductDetails() {
     const theProductId: number = +this.activatedRoute.snapshot.paramMap.get('id')!;
@@ -41,4 +41,15 @@ export class ProductDetailsComponent implements OnInit {
     this.cartService.addToCart(theCartItem);
     this.quantity = 1;
   }
+
+  toggleFavorite(): void {
+    this.productService.toggleFavorite(this.product).subscribe(
+      updatedProduct => this.favoriteProductsChanged.emit(updatedProduct)
+    );
+  }
+
+  isFavorite(): boolean {
+    return this.product.favorite;
+  }
 }
+

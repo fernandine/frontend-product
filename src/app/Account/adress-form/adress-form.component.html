@@ -1,35 +1,47 @@
-<ng-container *ngIf="showAddressForm">
-  <form [formGroup]="addressForm" (ngSubmit)="saveNewAddress()">
-    <div class="p-field">
-      <label for="cep">CEP</label>
-      <input id="cep" formControlName="cep" required pInputMask mask="99999-999">
-    </div>
+<form [formGroup]="addressForm" (ngSubmit)="onSubmit()" class="p-fluid">
 
-    <div class="p-field">
-      <label for="logradouro">Logradouro</label>
-      <input id="logradouro" formControlName="logradouro" required pInputText>
-    </div>
+  <div class="p-inputgroup">
+    <span class="p-inputgroup-addon">
+      <i class="pi pi-home"></i>
+    </span>
+    <input id="cep" formControlName="cep" required pInputMask mask="99999-999" class="p-inputtext" placeholder="CEP" (blur)="onCepBlur()">
+  </div>
 
-    <div class="p-field">
-      <label for="complemento">Complemento</label>
-      <input id="complemento" formControlName="complemento" pInputText>
-    </div>
+  <div class="p-inputgroup">
+    <span class="p-inputgroup-addon">
+      <i class="pi pi-map-marker"></i>
+    </span>
+    <input id="logradouro" formControlName="logradouro" required pInputText class="p-inputtext" placeholder="Logradouro">
+  </div>
 
-    <div class="p-field">
-      <label for="bairro">Bairro</label>
-      <input id="bairro" formControlName="bairro" required pInputText>
-    </div>
+  <div class="p-inputgroup">
+    <span class="p-inputgroup-addon">
+      <i class="pi pi-tag"></i>
+    </span>
+    <input id="complemento" formControlName="complemento" pInputText class="p-inputtext" placeholder="Complemento">
+  </div>
 
-    <div class="p-field">
-      <label for="localidade">Localidade</label>
-      <input id="localidade" formControlName="localidade" required pInputText>
-    </div>
+  <div class="p-inputgroup">
+    <span class="p-inputgroup-addon">
+      <i class="pi pi-home"></i>
+    </span>
+    <input id="bairro" formControlName="bairro" required pInputText class="p-inputtext" placeholder="Bairro">
+  </div>
 
-    <div class="p-field">
-      <label for="uf">UF</label>
-      <input id="uf" formControlName="uf" required pInputText>
-    </div>
+  <div class="p-inputgroup">
+    <span class="p-inputgroup-addon">
+      <i class="pi pi-home"></i>
+    </span>
+    <input id="localidade" formControlName="localidade" required pInputText class="p-inputtext" placeholder="Localidade">
+  </div>
 
-    <button pButton type="submit" label="Salvar"></button>
-  </form>
-</ng-container>
+  <div class="p-inputgroup">
+    <span class="p-inputgroup-addon">
+      <i class="pi pi-flag"></i>
+    </span>
+    <input id="uf" formControlName="uf" required pInputText class="p-inputtext" placeholder="UF">
+  </div>
+
+  <button pButton type="submit" label="{{ isNewAddress() ? 'Salvar' : 'Atualizar' }}" class="p-button-raised p-button-rounded"></button>
+
+</form>

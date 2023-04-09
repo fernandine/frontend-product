@@ -1,0 +1,7 @@
+<div *ngIf="currentUser; else loggedOut">
+  <h1>Dados do usuário</h1>
+  <p>Username: {{currentUser.username}}</p>
+</div>
+<ng-template #loggedOut>
+  <p>Por favor, faça o login para visualizar seu perfil.</p>
+</ng-template>

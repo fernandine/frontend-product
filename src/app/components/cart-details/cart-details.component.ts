@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartItem } from 'src/app/common/cart-item';
 import { CartService } from 'src/app/services/cart.service';
 import { SelectItem } from 'primeng/api';
@@ -7,7 +7,7 @@ import { SelectItem } from 'primeng/api';
   selector: 'app-cart-details',
   templateUrl: './cart-details.component.html'
 })
-export class CartDetailsComponent implements OnInit {
+export class CartDetailsComponent {
 
 
   quantityOptions: SelectItem[] = [{label: '1', value: 1 }, {label: '2', value: 2 }, {label: '3', value: 3}, {label: '4', value: 4}];

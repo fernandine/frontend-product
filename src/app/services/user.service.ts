@@ -19,14 +19,9 @@ import { AuthService } from './auth.service';
       return this.http.get<User[]>(this.baseUrl);
     }
 
-    getUserAddresses(token: string): Observable<Address[]> {
-      const headers = new HttpHeaders({
-        'Authorization': 'Bearer ' + token
-      });
-
-      return this.http.get<Address[]>(`${this.baseUrl}`, { headers: headers });
+    getUserById(id: number):Observable<User> {
+      return this.http.get<User>(`${this.baseUrl}/${id}`);
     }
-
 
     createUser(user: User): Observable<any> {
       return this.http.post(`${this.baseUrl}`, user);

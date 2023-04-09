@@ -1,46 +1,71 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Address } from 'src/app/common/address';
-import { AddressService } from 'src/app/services/address.service';
-import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
+import { AddressService } from '../../services/address.service';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/common/user';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-adress-list',
-  templateUrl: './adress-list.component.html'
+  templateUrl: './adress-list.component.html',
 })
 export class AdressListComponent {
 
-  @Input() addresses!: Address[];
+  @Input() addresses: Address[] = [];
+
+  adresses$!: Observable<Address[]>;
+  userId!: number;
+
+  @Output() add = new EventEmitter(false);
+  @Output() edit = new EventEmitter(false);
+  @Output() remove = new EventEmitter(false);
+
   showAddAddressDialog = false;
 
-  constructor(private addressService: AddressService) { }
+  constructor(
+    private addressService: AddressService,
+    private authService: AuthService,
+    private notificationService: NotificationService
+  ) {}
 
-  addAddress() {
+  ngOnInit(): void {
+    this.loadAddresses();
+  }
+
+  loadAddresses() {
+    const currentUserId = this.authService.getCurrentUser();
+    if (currentUserId) {
+      this.userId = currentUserId.id;
+      this.adresses$ = this.addressService.getByUserId(this.userId);
+    }
+  }
+
+  openAddAddressDialog() {
+    this.add.emit(true);
     this.showAddAddressDialog = true;
   }
 
   editAddress(address: Address) {
-    this.addressService.updateAddress(address).subscribe(
-      () => {
-        console.log('Endereço atualizado com sucesso.');
-      },
-      (error) => {
-        console.log('Ocorreu um erro ao atualizar o endereço: ', error);
-      }
-    );
+    console.log('Endereço editado:', address);
+    this.edit.emit(address);
   }
 
-  deleteAddress(address: Address) {
-    this.addressService.deleteAddress(address.id).subscribe(
-      () => {
-        console.log('Endereço excluído com sucesso.');
-      },
-      (error) => {
-        console.log('Ocorreu um erro ao excluir o endereço: ', error);
-      }
-    );
+  confirmDelete(id: number) {
+    if (confirm('Tem certeza que deseja excluir este endereço?')) {
+      this.addressService.deleteAddress(id).subscribe(
+        () => {
+          this.onSuccess('Endereço excluído com sucesso!');
+          location.reload();
+        },
+        (error) => this.onError('Erro ao excluir endereço.')
+      );
+    }
+  }
+  onSuccess(message: string) {
+    this.notificationService.success(message);
   }
 
+  onError(message: string) {
+    this.notificationService.error(message);
+  }
 }

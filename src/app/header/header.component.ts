@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
-import { Observable, of } from 'rxjs';
 import { Category } from '../common/category';
 import { AuthService } from '../services/auth.service';
 import { LoginService } from '../services/login.service';

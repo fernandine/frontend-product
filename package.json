@@ -24,6 +24,8 @@
     "@popperjs/core": "^2.11.6",
     "@stripe/stripe-js": "^1.46.0",
     "@types/quill": "^2.0.10",
+    "jsonwebtoken": "^9.0.0",
+    "jwt-decode": "^3.1.2",
     "ngx-spinner": "^15.0.1",
     "primeflex": "^3.3.0",
     "primeicons": "^6.0.1",

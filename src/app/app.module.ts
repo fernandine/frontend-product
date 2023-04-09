@@ -21,27 +21,28 @@ import { AppRoutingModule } from './app-routing.module';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from "./components/footer/footer.component";
-import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { OrderHistoryComponent } from './account/order-history/order-history.component';
 import { PrimeNgModule } from './primeng.module';
-import { AuthGuard } from './guards/auth.guard';
 import { HeaderComponent } from './header/header.component';
 import { NotificationService } from './services/notification.service';
 import { HttpRequestInterceptor } from './interceptor/http.interceptor';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { StatusRolePipe } from './status-role.pipe';
 import { RegisterComponent } from './autentication/register/register.component';
 import { LoginService } from './services/login.service';
-import { AccountComponent } from './Account/account/account.component';
+import { AccountComponent } from './account/account/account.component';
 import { EditProductsComponent } from './area-admin/edit-products/edit-products.component';
 import { AdminComponent } from './area-admin/admin/admin.component';
 import { CategoriesComponent } from './area-admin/categories/categories.component';
-import { AdressListComponent } from './Account/adress-list/adress-list.component';
-import { AdressFormComponent } from './Account/adress-form/adress-form.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { AdressListComponent } from './account/adress-list/adress-list.component';
+import { AdressFormComponent } from './account/adress-form/adress-form.component';
+import { ProfileComponent } from './account/profile/profile.component';
+import { FavoriteComponent } from './account/favorite/favorite.component';
 
 @NgModule({
     declarations: [
         AppComponent,
+        FavoriteComponent,
         ProfileComponent,
         ProductListComponent,
         SearchComponent,
@@ -69,11 +70,11 @@ import { ProfileComponent } from './components/profile/profile.component';
           ],
     providers: [
         ProductService,
-        [AuthGuard],
         CartService,
         MessageService,
         NotificationService,
         LoginService,
+        ConfirmationService,
         { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true }
     ],
     bootstrap: [AppComponent],

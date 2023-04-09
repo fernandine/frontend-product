@@ -8,7 +8,7 @@
       <button pButton pRipple type="button" *ngIf="(isLoggedIn)" routerLink="/admin" label="Area Admin" class="p-button-text text-green-800"></button>
 
       <button pButton pRipple label="Login" *ngIf="!(isLoggedIn)" icon="pi pi-user" routerLink="/login" class="p-button-text text-white-alpha-90"></button>
-      <button pButton pRipple label="Olá, {{ getUsername() }}" *ngIf="(isLoggedIn)" icon="pi pi-user" routerLink="/account" class="p-button-text text-white-alpha-90"></button>
+      <button pButton pRipple label="Olá, {{ getUsername() }}" *ngIf="(isLoggedIn)" icon="pi pi-user" routerLink="/account/profile" class="p-button-text text-white-alpha-90"></button>
       <button pButton pRipple label="Register" *ngIf="!(isLoggedIn)" routerLink="/register" class="p-button-text text-white-alpha-90"></button>
       <button pButton pRipple type="button" *ngIf="(isLoggedIn)" (click)="logout()" label="Sair" class="p-button-text text-white-alpha-90"></button>
 
