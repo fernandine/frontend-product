@@ -1,27 +1,37 @@
-# AngularEcommerce
+# App Angular - Ecommerce de produtos.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
+Este projeto é a base da minha aprendizagem em Angular. Através dele pude ter controle de diversas aplicabilidades que me fez entender todo o processo para o desenvolvimento fullstack.
 
-## Development server
+# Funcionalidades
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+O aplicativo permite navegar na grade principal de produtos e tem como menu algumas sugestões como:
+- Autenticação de usuários; (Login e Registro)
+- Detalhe de produtos;
+- Adição de produtos ao carrinho de compras;
+- Área do Administrador;
+- Acesso à conta do usuário;
+- Cadastro de Endereço;
+- Cadastro de Usuário;
+- Cadastro de Produtos dentre outros.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Você precisará ter o node e o npm instalados e também o servidor rodando. Estou usando o banco H2 executado em memória na aplicação do backend(Java + Spring), então você não precisará rodar um bd externo como MySQL ou PostgreSQL.
 
-## Build
+# Execução
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+O servidor do projeto está no endereço abaixo. Nele você encontra os dados de autenticação como sugestão e todos os dados de produtos.
+ 
+ [Clique aqui para acessar o Backend!](https://github.com/fernandine/ecommerce_v1.0-backend )
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Cliente executando na porta 8081
+```bash
+ng serve --port 8081
+```
 
-## Running end-to-end tests
+## Demonstração
+https://youtu.be/cGJrTUqEHPA
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## 🔗 Links
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/fernandine/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jean-fernandine/ )
