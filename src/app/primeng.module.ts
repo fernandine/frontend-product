@@ -34,7 +34,6 @@ import { ListboxModule } from 'primeng/listbox';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { MenuModule } from 'primeng/menu';
 import { MenubarModule } from 'primeng/menubar';
-import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { OrderListModule } from 'primeng/orderlist';
@@ -84,7 +83,6 @@ import { FormsModule } from '@angular/forms';
 @NgModule({
   imports: [CommonModule],
   exports: [
-
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
@@ -150,7 +148,6 @@ import { FormsModule } from '@angular/forms';
     TabMenuModule,
     InputNumberModule,
     MessagesModule,
-    MessageModule,
     GalleriaModule,
     DragDropModule,
     ProgressBarModule,

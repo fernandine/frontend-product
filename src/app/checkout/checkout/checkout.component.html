@@ -1,4 +1,54 @@
+<section class="surface-section px-4 py-5 md:px-6 lg:px-8">
+  <ul class="list-none flex flex-column gap-3 lg:flex-row justify-content-between p-0">
+    <li class="flex align-items-center flex-column gap-3 relative w-full">
+      <div class="flex justify-content-center align-items-center border-circle bg-primary-100 w-3rem h-3rem z-1">
+        <i *ngIf="isCart()" class="pi pi-check text-xl text-primary-600"></i>
+        <i *ngIf="!isCart()"class="pi pi-circle-fill text-sm text-primary-600"></i>
+      </div>
+      <div class="w-full hidden lg:block absolute left-50 bg-primary-500 hidden" style="transform: translateY(-50%); height: 2px; top: 25%"></div>
+      <div class="flex flex-column align-items-center">
+        <h1 class="m-0 font-medium text-900 text-sm line-height-3">Carrinho</h1>
+      </div>
+    </li>
+    <li class="flex align-items-center flex-column gap-3 relative w-full">
+      <div class="flex justify-content-center align-items-center border-circle bg-primary-100 w-3rem h-3rem z-1">
+        <i *ngIf="isProfile()" class="pi pi-check text-xl text-primary-600"></i>
+        <i *ngIf="!isProfile()" class="pi pi-circle-fill text-sm text-primary-600"></i>
+      </div>
+      <div class="w-full hidden lg:block absolute right-50 bg-primary-500 hidden" style="transform: translateY(-50%); height: 2px; top: 25%"></div>
+      <div class="w-full hidden lg:block absolute left-50 surface-300 hidden" style="transform: translateY(-50%); height: 2px; top: 25%"></div>
+      <div class="flex flex-column align-items-center">
+        <h1 class="m-0 font-medium text-900 text-sm line-height-3">Dados Pessoais</h1>
+      </div>
+    </li>
+    <li class="flex align-items-center flex-column gap-3 relative w-full">
+      <div class="flex justify-content-center align-items-center surface-200 border-circle w-3rem h-3rem z-1">
+        <i *ngIf="isDelivery()" class="pi pi-check text-xl text-primary-600"></i>
+        <i *ngIf="!isDelivery()" class="pi pi-circle-fill text-sm text-primary-600"></i>
+      </div>
+      <div class="w-full hidden lg:block absolute right-50 surface-300 hidden" style="transform: translateY(-50%); height: 2px; top: 25%"></div>
+      <div class="w-full hidden lg:block absolute left-50 surface-300 hidden" style="transform: translateY(-50%); height: 2px; top: 25%"></div>
+      <div class="flex flex-column align-items-center">
+        <h1 class="m-0 font-medium text-900 text-sm line-height-3">Entrega</h1>
+      </div>
+    </li>
+    <li class="flex align-items-center flex-column gap-3 relative w-full">
+      <div class="w-full hidden lg:block absolute right-50 surface-300 hidden" style="transform: translateY(-50%); height: 2px; top: 25%"></div>
+      <div class="flex justify-content-center align-items-center surface-200 border-circle w-3rem h-3rem z-1">
+        <i *ngIf="isPayment()" class="pi pi-check text-xl text-primary-600"></i>
+        <i *ngIf="!isPayment()" class="pi pi-circle-fill text-sm text-primary-600"></i>
+      </div>
+      <div class="flex flex-column align-items-center">
+        <h1 class="m-0 font-medium text-900 text-sm line-height-3">Pagamento</h1>
+      </div>
+    </li>
+  </ul>
 
+  <router-outlet></router-outlet>
+
+</section>
+
+<!--
     <div class="surface-section">
         <div class="grid grid-nogutter">
             <div class="col-12 lg:col-6 h-full px-4 py-8 md:px-6 lg:px-8">
@@ -90,3 +140,4 @@
             </div>
         </div>
     </div>
+  -->

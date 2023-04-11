@@ -1,0 +1,127 @@
+
+<div class="text-900 font-medium text-xl mb-3">Dados Pessoais</div>
+<p class="m-0 mb-4 p-0 text-600 line-height-3 mr-3">
+  Solicitamos apenas as informações essenciais para a realização da compra.
+</p>
+<div class="surface-card p-4 shadow-2 border-round">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="grid formgrid p-fluid">
+
+      <div class="field mb-4 col-10">
+        <label for="email" class="font-medium">Email*:</label>
+        <input id="email" formControlName="email" type="text" pInputText />
+        <p-messages
+          *ngIf="
+            profileForm.get('email')?.touched &&
+            profileForm.get('email')?.invalid
+          "
+          severity="error"
+          text="Email é obrigatório"
+        ></p-messages>
+      </div>
+
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="firstName" class="font-medium">Nome*:</label>
+        <input
+          id="firstName"
+          formControlName="firstName"
+          type="text"
+          pInputText
+        />
+        <p-messages
+          *ngIf="
+            profileForm.get('firstName')?.touched &&
+            profileForm.get('firstName')?.invalid
+          "
+          severity="error"
+          text="Sobrenome é obrigatório"
+        ></p-messages>
+      </div>
+      <div class="field mb-4 col-12 md:col-6">
+        <label for="lastName">Sobrenome:</label>
+        <input
+          type="text"
+          id="lastName"
+          pInputText
+          formControlName="lastName"
+        />
+        <p-messages
+          *ngIf="
+            profileForm.get('lastName')?.touched &&
+            profileForm.get('lastName')?.invalid
+          "
+          severity="error"
+          text="Sobrenome é obrigatório"
+        ></p-messages>
+      </div>
+
+    <div class="field mb-4 col-12 md:col-6">
+      <label for="cpf">CPF*: </label>
+      <input type="text" id="cpf" pInputText formControlName="cpf" />
+      <p-messages
+        *ngIf="
+          profileForm.get('cpf')?.touched && profileForm.get('cpf')?.invalid
+        "
+        severity="error"
+        text="CPF é obrigatório"
+      ></p-messages>
+    </div>
+    <div class="field mb-4 col-12 md:col-6">
+      <label for="phone">Telefone*:</label>
+      <input type="text" id="phone" pInputText formControlName="phone" />
+      <p-messages
+        *ngIf="
+          profileForm.get('phone')?.touched && profileForm.get('phone')?.invalid
+        "
+        severity="error"
+        text="Telefone é obrigatório"
+      ></p-messages>
+    </div>
+
+    <div class="field mb-4 col-4">
+      <label for="birthDay">Data de Nascimento:</label>
+      <input type="date" id="birthDay" pInputText formControlName="birthDay" />
+      <p-messages
+        *ngIf="
+          profileForm.get('birthDay')?.touched &&
+          profileForm.get('birthDay')?.invalid
+        "
+        severity="error"
+        text="Data de Nascimento é obrigatória"
+      ></p-messages>
+    </div>
+  </div>
+
+    <div class="surface-100 mb-3 col-12" style="height: 2px"></div>
+    <div class="field mb-4 col-12">
+      <label for="privacy" class="font-medium">Política de Privacidade</label>
+      <div class="flex align-items-center">
+
+          <p-checkbox formControlName="privacy" value="privacy"></p-checkbox>
+          <label class="ml-3">Concordo com a política de privacidade.</label>
+
+      </div>
+    </div>
+    <div class="surface-100 mb-3 col-12" style="height: 2px"></div>
+    <div class="col-12">
+      <button class="w-auto mt-3 p-button p-button-primary">Salvar</button>
+</div>
+</form>
+
+<p-messages *ngIf="profileForm.dirty && !profileForm.valid" severity="error"
+              global="true" [(value)]="msgs"></p-messages>
+  <p-messages *ngIf="msgs" [value]="msgs"></p-messages>
+
+<p-messages *ngIf="updateSuccess" severity="success" text="Dados atualizados com sucesso!"></p-messages>
+
+<p-messages *ngIf="updateError" severity="error" text="Não foi possível atualizar os dados."></p-messages>
+
+
+<div class="flex justify-content-end py-4">
+  <button class="p-button p-button-primary mr-4" routerLink="/checkout/cart-details">Voltar</button>
+  <button class="p-button p-button-primary" routerLink="/checkout/delivery">Continuar</button>
+</div>
+
+</div>
+
+

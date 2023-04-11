@@ -1,0 +1,76 @@
+<div class="text-900 font-medium text-xl mb-3">Dados Pessoais</div>
+<p class="m-0 mb-4 p-0 text-600 line-height-3 mr-3">
+  Solicitamos apenas as informações essenciais para a realização da compra.
+</p>
+<div class="surface-card p-4 shadow-2 border-round">
+<form [formGroup]="addressForm" (ngSubmit)="onSubmit()" >
+  <div class="grid formgrid p-fluid">
+
+
+      <div class="mb-4 col-10">
+        <div class="form-group">
+          <label for="cep">CEP*</label>
+          <input  id="cep" formControlName="cep" required pInputText  class="form-control" placeholder="Insira seu CEP" (blur)="onCepBlur()">
+        </div>
+      </div>
+
+      <div class="mb-4 col-6">
+        <div class="form-group">
+          <label for="logradouro">Endereço*</label>
+          <input id="logradouro" formControlName="logradouro" required pInputText class="form-control" placeholder="Insira o endereço completo">
+        </div>
+      </div>
+
+    <div class="mb-4 col-3">
+      <div class="form-group">
+        <label for="numero">Número</label>
+        <input id="numero" formControlName="numero" required pInputText class="form-control" placeholder="Nº">
+      </div>
+    </div>
+
+    <div class="mb-4 col-4">
+      <div class="form-group">
+        <label for="complemento">Complemento</label>
+        <input id="complemento" formControlName="complemento" pInputText class="form-control" placeholder="Insira complemento (opcional)">
+      </div>
+    </div>
+
+    <div class="mb-4 col-4">
+      <div class="form-group">
+        <label for="bairro">Bairro*</label>
+        <input id="bairro" formControlName="bairro" required pInputText class="form-control" placeholder="Insira o bairro">
+      </div>
+    </div>
+
+    <div class="mb-4 col-4">
+      <div class="form-group">
+        <label for="localidade">Cidade*</label>
+        <input id="localidade" formControlName="localidade" required pInputText class="form-control" placeholder="Insira a cidade">
+      </div>
+    </div>
+
+    <div class="mb-4 col-3">
+      <div class="form-group">
+        <label for="uf">Estado*</label>
+        <input id="uf" formControlName="uf" required pInputText class="form-control" placeholder="Insira o estado">
+      </div>
+    </div>
+
+  </div>
+</form>
+  <button *ngIf="isNewAddress()" (click)="createAddress()" class="mr-4 p-button p-button-primary p-button-raised">
+    <i class="pi pi-check mr-2"></i> Salvar
+  </button>
+
+  <button *ngIf="!isNewAddress()" (click)="updateAddress()" class="p-button p-button-primary p-button-raised">
+    <i class="pi pi-pencil mr-2"></i> Atualizar
+  </button>
+
+
+
+<div class="flex justify-content-end py-4">
+<button class="p-button p-button-primary mr-4" routerLink="/checkout/profile-form">Voltar</button>
+<button class="p-button p-button-primary" routerLink="/checkout/payment">Continuar</button>
+</div>
+
+</div>

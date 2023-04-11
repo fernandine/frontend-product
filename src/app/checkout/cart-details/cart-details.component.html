@@ -1,13 +1,13 @@
-<div class="surface-section px-4 py-8 md:px-6 lg:px-8">
+<div class="surface-section px-4 py-4 md:px-6 lg:px-8">
   <ul class="list-none p-0 m-0" *ngFor="let cart of cartItems">
-      <li class="flex flex-column md:flex-row py-6 border-top-1 border-bottom-1 surface-border md:align-items-center">
+      <li class="flex flex-column md:flex-row py-3 border-top-1 border-bottom-1 surface-border md:align-items-center">
           <img src="{{ cart.imageUrl }}" class="w-12rem flex-shrink-0 mx-auto md:mx-0" />
           <div class="flex-auto py-5 md:pl-5">
-              <div class="flex flex-wrap align-items-start sm:align-items-center sm:flex-row sm:justify-content-between surface-border pb-6">
+              <div class="flex flex-wrap align-items-start sm:align-items-center sm:flex-row sm:justify-content-between surface-border pb-2">
                   <div class="w-full sm:w-6 flex flex-column">
-                      <span class="text-900 text-xl font-medium mb-3">{{ cart.name }}</span>
+                      <span class="text-900 text-xl font-medium mb-2">{{ cart.name }}</span>
                   </div>
-                  <div class="w-full sm:w-6 flex align-items-start justify-content-between mt-3 sm:mt-0" >
+                  <div class="w-full sm:w-6 flex align-items-start justify-content-between mt-2 sm:mt-0" >
                       <div>
                         <td>
                           <button pButton type="button" buttonLayout="horizontal" class="p-button-danger" decrementButtonClass="p-button-danger" icon="pi pi-minus" (click)="decrementQuantity(cart)" [disabled]="cart.quantity <= 1"></button>
@@ -24,20 +24,7 @@
                         </div>
                   </div>
               </div>
-              <div class="flex flex-column">
-                  <span class="inline-flex align-items-center mb-3">
-                      <i class="pi pi-envelope text-600 mr-2"></i>
-                      <span class="text-600 mr-2">Order today.</span>
-                  </span>
-                  <span class="inline-flex align-items-center mb-3">
-                      <i class="pi pi-send text-600 mr-2"></i>
-                      <span class="text-600 mr-2">Delivery by <span class="font-bold">Dec 23.</span></span>
-                  </span>
-                  <span class="flex align-items-center">
-                      <i class="pi pi-exclamation-triangle text-600 mr-2"></i>
-                      <span class="text-600">Only 8 Available.</span>
-                  </span>
-              </div>
+
           </div>
       </li>
   </ul>
@@ -49,17 +36,18 @@
               <span class="text-xl text-900">{{ getSubtotal() | currency }}</span>
           </li>
           <li class="flex justify-content-between mb-4">
-              <span class="text-xl text-900">Shipping</span>
-              <span class="text-xl text-900">Free</span>
+              <span class="text-xl text-900">Frete</span>
+              <strong>Grátis</strong>
           </li>
 
           <li class="flex justify-content-between border-top-1 surface-border mb-4 pt-4">
               <span class="text-xl text-900 font-bold text-3xl">Total</span>
-              <span class="text-xl text-900 font-bold text-3xl">{{ totalPrice | currency: "USD"}}</span>
+              <span class="text-xl text-900 font-bold text-3xl text-red-600">{{ totalPrice | currency: "USD"}}</span>
           </li>
-          <li class="flex justify-content-end">
-              <button pButton pRipple routerLink="/checkout" label="Check Out"></button>
-          </li>
+
       </ul>
 </div>
+<div class="flex justify-content-end py-4">
+  <p-button label="Avançar" routerLink="/checkout/profile-form"></p-button>
+  </div>
 </div>

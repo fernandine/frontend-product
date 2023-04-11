@@ -4,9 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { CartDetailsComponent } from './components/cart-details/cart-details.component';
-import { CartStatusComponent } from './components/cart-status/cart-status.component';
-import { CheckoutComponent } from './components/checkout/checkout.component';
+import { CartDetailsComponent } from './checkout/cart-details/cart-details.component';
+
 import { LoginComponent } from './autentication/login/login.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
@@ -38,12 +37,20 @@ import { AdressListComponent } from './account/adress-list/adress-list.component
 import { AdressFormComponent } from './account/adress-form/adress-form.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { FavoriteComponent } from './account/favorite/favorite.component';
+import { CartStatusComponent } from './checkout/cart-status/cart-status.component';
+import { CheckoutComponent } from './checkout/checkout/checkout.component';
+import { ProfileFormComponent } from './checkout/profile-form/profile-form.component';
+import { DeliveryComponent } from './checkout/delivery/delivery.component';
+import { PaymentComponent } from './checkout/payment/payment.component';
 
 @NgModule({
     declarations: [
         AppComponent,
+        DeliveryComponent,
+        PaymentComponent,
         FavoriteComponent,
         ProfileComponent,
+        ProfileFormComponent,
         ProductListComponent,
         SearchComponent,
         ProductDetailsComponent,

@@ -32,17 +32,17 @@ export class HeaderComponent implements OnInit {
 
     this.items = [
       {
-        label: 'Home',
+        label: 'Início',
         routerLink: '/products',
         styleClass: 'p-button-text'
       },
       {
-        label: 'About us',
+        label: 'Sobre',
         routerLink: '/about',
         styleClass: 'p-button-text'
       },
       {
-        label: 'Contact',
+        label: 'Contato',
         routerLink: '/contact',
         styleClass: 'p-button-text'
       }

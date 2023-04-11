@@ -21,12 +21,12 @@
                 <!--span class="text-500">{{ reviews }}</span-->
               </div>
                 <div class="mb-4">
-                  <span class="line-through text-600">{{ (product.unitPrice ? product.unitPrice + 20 : product.unitPrice) | currency: "USD" }}</span>
-                  <span class="font-bold text-900 ml-2">{{ product.unitPrice | currency: "USD" }}</span>
+                  <span class="line-through text-600">{{ (product.unitPrice ? product.unitPrice + 20 : product.unitPrice) | currency: "BRL" }}</span>
+                  <span class="font-bold text-900 ml-2">{{ product.unitPrice | currency: "BRL" }}</span>
               </div>
               <p-button
               styleClass="mt-3 add-to-cart"
-              label="Add to cart"
+              label="Comprar"
               icon="pi pi-shopping-cart"
               (click)="addToCart(product)"
               >

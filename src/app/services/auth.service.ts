@@ -34,10 +34,15 @@ export class AuthService {
       map(response => {
         const token = response.access_token;
         const id = response.id;
+        const cpf = response.cpf;
+        const firstName = response.firstName;
+        const birthDay = response.birthDay;
+        const email = response.email;
+        const lastName = response.lastName;
+        const phone = response.phone;
         if (token) {
-          const currentUser = { username, token, id };
+          const currentUser = { username, token, id, email, lastName, firstName, phone, cpf, birthDay };
           this.storageService.setItem('currentUser', currentUser);
-
           return true;
         } else {
           return false;
@@ -46,15 +51,27 @@ export class AuthService {
     );
   }
 
-  getCurrentUser(): { username: string; token: string; id: number } | null {
+  getCurrentUser(): {
+    username: string;
+    token: string;
+    id: number
+    lastName: string;
+    firstName: string;
+    phone: string;
+    email: string;
+  } | null {
     const currentUser = this.storageService.getItem('currentUser');
     console.log('currentUser:', currentUser);
     if (currentUser && currentUser.token) {
       console.log('token:', currentUser.token);
       return {
+        email: currentUser.email || '',
         username: currentUser.username || '',
         token: currentUser.token || '',
-        id: currentUser.id
+        id: currentUser.id,
+        lastName: currentUser.lastName || '',
+        firstName: currentUser.firstName || '',
+        phone: currentUser.phone || '',
       };
     } else {
       return null;

@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { provideRouter, RouterModule, Routes } from '@angular/router';
-import { CartDetailsComponent } from './components/cart-details/cart-details.component';
-import { CheckoutComponent } from './components/checkout/checkout.component';
 import { LoginComponent } from './autentication/login/login.component';
 import { OrderHistoryComponent } from './account/order-history/order-history.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
@@ -14,6 +12,11 @@ import { RegisterComponent } from './autentication/register/register.component';
 import { AdressListComponent } from './account/adress-list/adress-list.component';
 import { ProfileComponent } from './account/profile/profile.component';
 import { FavoriteComponent } from './account/favorite/favorite.component';
+import { CheckoutComponent } from './checkout/checkout/checkout.component';
+import { CartDetailsComponent } from './checkout/cart-details/cart-details.component';
+import { ProfileFormComponent } from './checkout/profile-form/profile-form.component';
+import { DeliveryComponent } from './checkout/delivery/delivery.component';
+import { PaymentComponent } from './checkout/payment/payment.component';
 
 const routes: Routes = [
   {
@@ -28,13 +31,18 @@ const routes: Routes = [
     { path: 'favorites', component: FavoriteComponent },
   ]},
 
+  { path: 'checkout', component: CheckoutComponent, children: [
+    { path: 'cart-details', component: CartDetailsComponent },
+    { path: 'profile-form', component: ProfileFormComponent },
+    { path: 'delivery', component: DeliveryComponent },
+    { path: 'payment', component: PaymentComponent },
+  ]},
+
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'checkout', component: CheckoutComponent },
-  { path: 'cart-details', component: CartDetailsComponent },
   { path: 'products/:id', component: ProductDetailsComponent },
   { path: 'search/:keyword', component: ProductListComponent },
   { path: 'categories/:id', component: ProductListComponent },

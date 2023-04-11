@@ -11,28 +11,28 @@ import { AuthService } from './auth.service';
   })
   export class UserService {
 
-    private baseUrl = environment.shopApiUrl  + '/users';
+    private userUrl = environment.shopApiUrl  + '/users';
 
     constructor(private http: HttpClient) { }
 
     getUser(): Observable<User[]> {
-      return this.http.get<User[]>(this.baseUrl);
+      return this.http.get<User[]>(this.userUrl);
     }
 
     getUserById(id: number):Observable<User> {
-      return this.http.get<User>(`${this.baseUrl}/${id}`);
+      return this.http.get<User>(`${this.userUrl}/${id}`);
     }
 
     createUser(user: User): Observable<any> {
-      return this.http.post(`${this.baseUrl}`, user);
+      return this.http.post(`${this.userUrl}`, user);
     }
 
     updateUser(id: number, value: any): Observable<any> {
-      return this.http.put(`${this.baseUrl}/${id}`, value);
+      return this.http.put(`${this.userUrl}/${id}`, value);
     }
 
     deleteUser(id: number): Observable<any> {
-      return this.http.delete(`${this.baseUrl}/${id}`);
+      return this.http.delete(`${this.userUrl}/${id}`);
     }
   }
 

@@ -11,14 +11,8 @@ import { NotificationService } from 'src/app/services/notification.service';
 })
 export class AdressListComponent {
 
-  @Input() addresses: Address[] = [];
-
   adresses$!: Observable<Address[]>;
   userId!: number;
-
-  @Output() add = new EventEmitter(false);
-  @Output() edit = new EventEmitter(false);
-  @Output() remove = new EventEmitter(false);
 
   showAddAddressDialog = false;
 
@@ -41,13 +35,11 @@ export class AdressListComponent {
   }
 
   openAddAddressDialog() {
-    this.add.emit(true);
     this.showAddAddressDialog = true;
   }
 
   editAddress(address: Address) {
     console.log('Endereço editado:', address);
-    this.edit.emit(address);
   }
 
   confirmDelete(id: number) {

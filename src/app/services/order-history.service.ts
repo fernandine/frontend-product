@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { OrderHistory } from '../common/order-history';
+import { Order } from '../common/order';
 
 @Injectable({
   providedIn: 'root'
@@ -11,17 +11,25 @@ export class OrderHistoryService {
 
   private orderUrl = environment.shopApiUrl  + '/orders'
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getOrderHistory(theEmail: string): Observable<GetResponseOrderHistory> {
-
-    const orderHistoryUrl = `${this.orderUrl}/search?email=${theEmail}`;
-
-    return this.httpClient.get<GetResponseOrderHistory>(orderHistoryUrl);
-
+  getOrder(): Observable<Order[]> {
+    return this.http.get<Order[]>(this.orderUrl);
   }
-}
 
-interface GetResponseOrderHistory {
-  content: OrderHistory[];
+  getOrderById(id: number):Observable<Order> {
+    return this.http.get<Order>(`${this.orderUrl}/${id}`);
+  }
+
+  createOrder(order: Order): Observable<any> {
+    return this.http.post(`${this.orderUrl}`, order);
+  }
+
+  updateOrder(id: number, value: any): Observable<any> {
+    return this.http.put(`${this.orderUrl}/${id}`, value);
+  }
+
+  deleteOrder(id: number): Observable<any> {
+    return this.http.delete(`${this.orderUrl}/${id}`);
+  }
 }

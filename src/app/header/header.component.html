@@ -1,11 +1,11 @@
-<p-menubar [model]="items" [styleClass]="'bg-orange-500 py-3 px-6 shadow-2 flex align-items-center justify-content-between relative lg:static'" [autoDisplay]="false">
+<p-menubar [model]="items" [styleClass]="'bg-orange-500 border-noround py-3 px-6 flex align-items-center justify-content-between relative lg:static'" [autoDisplay]="false">
   <ng-template pTemplate="start">
-    <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" alt="Image" height="40" class="mr-0 lg:mr-6">
+    <img src="../../assets/images/logo.svg" alt="Image" height="40" class="mr-0 lg:mr-6">
     <button type="button" pButton icon="pi pi-bars"  class="lg:hidden text-indigo-100"></button>
   </ng-template>
   <ng-template pTemplate="end">
     <div class="ui-toolbar-group-right flex align-items-baseline flex-wrap gap-1 md:gap-2 xl:gap-4">
-      <button pButton pRipple type="button" *ngIf="(isLoggedIn)" routerLink="/admin" label="Area Admin" class="p-button-text text-green-800"></button>
+      <button pButton pRipple type="button" *ngIf="(isLoggedIn)" routerLink="/admin" label="Area do Administrador" class="p-button-text text-green-800"></button>
 
       <button pButton pRipple label="Login" *ngIf="!(isLoggedIn)" icon="pi pi-user" routerLink="/login" class="p-button-text text-white-alpha-90"></button>
       <button pButton pRipple label="Olá, {{ getUsername() }}" *ngIf="(isLoggedIn)" icon="pi pi-user" routerLink="/account/profile" class="p-button-text text-white-alpha-90"></button>
